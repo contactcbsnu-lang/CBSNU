@@ -4,129 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - CBSN-U</title>
-    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- CSS file is correctly linked -->
+    <link rel="stylesheet" href="css/style.css"> 
     
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
+    <!-- Email.js CDN for form submission -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
-<body data-theme="coastal-midnight"> <div class="video-background">
-        <video autoplay loop muted playsinline>
-            <source src="image/3163534-uhd_3840_2160_30fps.mp4" type="video/mp4">
-            Your browser does not support the video tag.
+<body data-theme="coastal-midnight"> 
+    
+    <!-- Video Background (Placeholder or actual video) -->
+    <div class="video-background">
+        <video autoplay loop muted playsinline poster="https://placehold.co/1920x1080/040B15/E0B973?text=Video+Background">
+            <source src="image/3163534-uhd_3840_2160_30fps.mp4" type="video/mp4" onerror="this.parentNode.style.display='none'">
         </video>
     </div>
 
     <div class="content-wrapper">
-
         <div class="theme-switcher">
              <div class="theme-dot" id="theme-rouge" title="Deep Rouge"></div>
-            <div class="theme-dot" id="theme-ember" title="Warm Ember"></div>
-            <div class="theme-dot" id="theme-gold" title="Regal Gold"></div>
-            <div class="theme-dot" id="theme-teal" title="Spectral Teal"></div>
-            <div class="theme-dot" id="theme-platinum" title="Modern Platinum"></div>
-            <div class="theme-dot" id="theme-midnight" title="Coastal Midnight"></div>
-            <div class="theme-dot" id="theme-pw-yellow" title="PW Yellow"></div>
+             <div class="theme-dot" id="theme-coastal-midnight" title="Coastal Midnight"></div>
         </div>
 
-        <header>
-             <div class="logo-container">
-                <img src="image/1744649096909.png" alt="CBSN-U Logo" class="logo">
-                <h1>CBSN-U</h1>
-            </div>
-            <button class="nav-toggle" aria-label="toggle navigation">
-                <span class="hamburger"></span>
-            </button>
-            <div class="nav-menu">
-                <nav>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li class="dropdown">
-                            <a href="about.html">About Us ▾</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="about.html">About CBSN-U</a></li>
-                                <li><a href="vision.html">Vision</a></li>
-                                <li><a href="objectives.html">Objectives</a></li>
-                                <li><a href="functions.html">Functions</a></li>
-                                <li><a href="governing-body.html">Governing Body</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="exams.html">Exams ▾</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="exams.html">For Institutes</a></li>
-                                <li><a href="school.html">For Schools</a></li>
-                                <li><a href="cbsnu-exams.html">CBSN-U Exams</a></li>
-                                <li><a href="coaching.html">Coaching Collaborations</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="tpc.html">Test Practice Centre</a></li>
-                        <li><a href="rti.html">RTI</a></li>
-                        <li><a href="franchise.html">Franchise</a></li>
-                        <li><a href="downloads.html">Downloads</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                    </ul>
-                </nav>
-                <div class="login-dropdown dropdown">
-                    <button class="login-btn">Login/Signup ▾</button>
-                    <ul class="dropdown-menu">
-                        <li><a href="login-student.html">Students Login</a></li>
-                        <li><a href="login-admin.html">Admin Login</a></li>
-                        <li><a href="login-school.html">School Login</a></li>
-                        <li><a href="login-institute.html">Institute/Coaching Login</a></li>
-                    </ul>
-                </div>
-            </div>
-        </header>
-
-        <main class="page-main-content">
-            <div class="page-hero">
-                <h1>Contact Us</h1>
-                <p>We're here to help. Send us an inquiry and we'll get back to you.</p>
-            </div>
-
-            <div class="about-content" style="width: 80%; margin: 40px auto;">
-                
-                <section class="content-section">
-                    <h2>Send Us an Inquiry</h2>
-                    <p>Have a question or want to partner with us? Fill out the form below.</p>
+        <main>
+            <div class="container">
+                <section id="contact-form-section">
+                    <h2>Contact Us</h2>
+                    <p class="section-subtitle">Contact us today to begin your educational journey.</p>
                     
-                    <form id="contact-form" class="contact-form">
-                        
-                        <div id="form-status" class="form-status"></div>
+                    <!-- Status Message Box -->
+                    <div id="status-message" style="display: none;"></div>
 
-                        <div class="form-grid">
-                            <div>
-                                <label for="from_name">Full Name</label>
-                                <input type="text" id="from_name" name="from_name" class="form-input" required>
-                            </div>
-                            <div>
-                                <label for="from_email">Email Address</label>
-                                <input type="email" id="from_email" name="from_email" class="form-input" required>
-                            </div>
+                    <form id="contact-form">
+                        <!-- IMPORTANT: 'name' attribute must match your Email.js template variables -->
+                        <div class="form-group">
+                            <label for="name">Your Name:</label>
+                            <!-- Name used in Email.js template as 'from_name' -->
+                            <input type="text" id="name" name="from_name" placeholder="Enter your name" required>
                         </div>
-                        
-                        <div>
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" class="form-input" required>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <!-- Name used in Email.js template as 'user_email' -->
+                            <input type="email" id="email" name="user_email" placeholder="Enter your email" required>
                         </div>
-
-                        <div>
-                            <label for="message">Your Message</label>
-                            <textarea id="message" name="message" class="form-input" rows="6" required></textarea>
+                        <div class="form-group">
+                            <label for="phone">Phone Number:</label>
+                            <!-- Name used in Email.js template as 'user_phone' -->
+                            <input type="tel" id="phone" name="user_phone" placeholder="Enter your phone number" required>
                         </div>
-                        
-                        <button type="submit" id="form-submit-btn" class="btn-calculate">
-                            Send Message
-                        </button>
+                        <div class="form-group">
+                            <label for="subject">Subject:</label>
+                            <!-- Name used in Email.js template as 'subject' -->
+                            <input type="text" id="subject" name="subject" placeholder="Enter the subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message:</label>
+                            <!-- Name used in Email.js template as 'message' -->
+                            <textarea id="message" name="message" rows="5" placeholder="Enter your message here" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn" id="submit-btn">Send Message</button>
                     </form>
-                    
-                    <h3 class="section-subtitle" style="margin-top: 40px;">Or Contact Us Directly</h3>
-                    <div class="function-grid">
+                </section>
+
+                <section id="contact-info">
+                    <h2>Our Contact Info</h2>
+                    <div class="contact-boxes">
                         <div class="function-box">
                             <i class="fas fa-envelope"></i>
-                            <h3>Email Us</h3>
+                            <h3>Email</h3>
                             <p>cbsnu.contact@gmail.com</p>
                         </div>
                         <div class="function-box">
@@ -140,7 +88,6 @@
                             <p>Begusarai, Bihar, 851101</p>
                         </div>
                     </div>
-
                 </section>
 
             </div>
@@ -166,10 +113,77 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 CBSN-U. All rights reserved. | Website: cbsnu.live</p>
+                <p>&copy; 2025 CBSN-U. All rights reserved. | Website: cbsnu.in</p>
             </div>
         </footer>
+    </div>
+    
+    <!-- JavaScript for Email.js Submission -->
+    <script>
+        // Initialize Email.js with the Public Key
+        emailjs.init("DqEZGom9bxso5B5Zl");
 
-    </div> <script src="js/script.js"></script>
+        // --- DOM Elements ---
+        const form = document.getElementById('contact-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const statusMessage = document.getElementById('status-message');
+
+        // --- Utility Functions ---
+        function showStatus(message, type) {
+            statusMessage.style.display = 'block';
+            statusMessage.textContent = message;
+            
+            // Apply status message styles
+            statusMessage.style.padding = '15px';
+            statusMessage.style.margin = '15px 0';
+            statusMessage.style.borderRadius = '5px';
+            statusMessage.style.textAlign = 'center';
+            statusMessage.style.fontWeight = 'bold';
+            
+            // Assign CSS classes for styling (success/error)
+            // You need to define these in your css/style.css: .success { background-color: #d4edda; color: #155724; }
+            // .error { background-color: #f8d7da; color: #721c24; }
+            statusMessage.className = type; 
+        }
+
+        // --- Handle Form Submission for Email.js ---
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            statusMessage.style.display = 'none';
+
+            // Email.js sendForm method uses the form element itself
+            try {
+                await emailjs.sendForm('service_nvwp74b', 'template_1d072cu', form);
+                
+                showStatus('Message sent successfully via Email.js!', 'success');
+                form.reset();
+            } catch (error) {
+                console.error("Error sending email: ", error);
+                showStatus(`Error sending message: ${error.message || 'Please check your Email.js configuration.'}`, 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send Message';
+            }
+        });
+
+        // --- Theme Switcher Logic ---
+        document.querySelectorAll('.theme-dot').forEach(dot => {
+            dot.addEventListener('click', function() {
+                const theme = this.id.replace('theme-', '');
+                document.body.setAttribute('data-theme', theme);
+            });
+        });
+        
+        // Ensure video is not broken on error
+        const video = document.querySelector('.video-background video');
+        if (video) {
+            video.onerror = function() {
+                this.parentNode.style.display = 'none';
+                document.body.style.backgroundImage = 'linear-gradient(to bottom, #040B15, #1A1A1A)';
+            };
+        }
+    </script>
 </body>
 </html>
