@@ -75,7 +75,8 @@
                         <div class="function-box">
                             <i class="fas fa-envelope"></i>
                             <h3>Email</h3>
-                            <p>cbsnu.contact@gmail.com</p>
+                            <!-- Updated email ID as requested by the user -->
+                            <p>contact.cbsnu@gmail.com</p>
                         </div>
                         <div class="function-box">
                             <i class="fas fa-phone-alt"></i>
@@ -101,7 +102,8 @@
                 </div>
                 <div class="footer-col">
                     <h3>Contact Us</h3>
-                    <p>Email: cbsnu.contact@gmail.com</p>
+                    <!-- Updated email ID in the footer -->
+                    <p>Email: contact.cbsnu@gmail.com</p>
                     <p>Phone: +91 8709547748</p>
                     <p>Address: Begusarai, Bihar, 851101, India</p>
                 </div>
@@ -127,6 +129,9 @@
         const form = document.getElementById('contact-form');
         const submitBtn = document.getElementById('submit-btn');
         const statusMessage = document.getElementById('status-message');
+        
+        // IMPORTANT NOTE: The actual recipient email (contact.cbsnu@gmail.com) 
+        // must be set in your Email.js template settings for 'template_1d072cu'.
 
         // --- Utility Functions ---
         function showStatus(message, type) {
@@ -141,8 +146,6 @@
             statusMessage.style.fontWeight = 'bold';
             
             // Assign CSS classes for styling (success/error)
-            // You need to define these in your css/style.css: .success { background-color: #d4edda; color: #155724; }
-            // .error { background-color: #f8d7da; color: #721c24; }
             statusMessage.className = type; 
         }
 
@@ -155,13 +158,14 @@
 
             // Email.js sendForm method uses the form element itself
             try {
+                // Service ID: 'service_nvwp74b', Template ID: 'template_1d072cu'
                 await emailjs.sendForm('service_nvwp74b', 'template_1d072cu', form);
                 
-                showStatus('Message sent successfully via Email.js!', 'success');
+                showStatus('Message sent successfully! We will contact you soon.', 'success');
                 form.reset();
             } catch (error) {
                 console.error("Error sending email: ", error);
-                showStatus(`Error sending message: ${error.message || 'Please check your Email.js configuration.'}`, 'error');
+                showStatus(`Error sending message. Please check the console or try calling us.`, 'error');
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Send Message';
