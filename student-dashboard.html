@@ -1,213 +1,250 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Dashboard - CBSN-U</title>
-    <link rel="stylesheet" href="css/dashboard-style.css"> 
-    <style>
-        /* Reusing task-card for announcements but adding specific styles */
-        .task-card { 
-            border-left: 5px solid #007bff; /* Blue accent for visual cue */
-        }
-        .download-btn {
-            background-color: #28a745; /* Green */
-            color: white;
-            padding: 0.5rem 1rem;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        .download-btn:hover {
-            background-color: #218838;
-        }
-    </style>
-</head>
-<body>
-    <nav class="navbar">
-        <div class="logo-container-dash">
-            <img src="image/1744649096909.png" alt="CBSN-U Logo" class="dash-logo">
-            <div class="logo">CBSN-U Student Portal</div>
-        </div>
-        <button class="hamburger" id="hamburger-btn">&#9776;</button>
-        <ul id="nav-links">
-            <li><a href="#">My Profile</a></li>
-            <li><a href="#">Grades</a></li>
-            <li><a href="index.html">Logout</a></li>
-        </ul>
-    </nav>
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+import { getAuth, signInWithCustomToken, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+import { getFirestore, collection, addDoc, doc, deleteDoc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+import { getStorage, ref as storageRef, uploadBytesResumable, deleteObject, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-storage.js";
 
-    <header class="dashboard-header">
-        <div class="container">
-            <h1>Welcome, Student Name!</h1>
-            <p>Your personalized learning hub awaits.</p>
-        </div>
-    </header>
+// --- Global Setup ---
+const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+let db, auth, storage;
+
+// Function to initialize Firebase and authenticate
+async function initializeFirebase() {
+    try {
+        const app = initializeApp(firebaseConfig);
+        db = getFirestore(app);
+        auth = getAuth(app);
+        storage = getStorage(app);
+
+        // Sign in using the provided token or anonymously
+        if (initialAuthToken) {
+            await signInWithCustomToken(auth, initialAuthToken);
+        } else {
+            await signInAnonymously(auth);
+        }
+        console.log("Firebase initialized and signed in.");
+
+        // Once authenticated, load posts
+        loadPastPosts();
+
+    } catch (error) {
+        console.error("Error during Firebase initialization or sign-in:", error);
+        displayStatus("Error initializing Firebase. Check console for details.", 'error');
+    }
+}
+
+// --- Helper Functions ---
+function displayStatus(message, type) {
+    const statusDiv = document.getElementById("upload-status");
+    statusDiv.style.display = "block";
+    statusDiv.className = `status-message ${type}`;
+    statusDiv.textContent = message;
+}
+
+// FIRESTORE SAVE FUNCTION (Runs after file upload)
+async function saveToFirestore(title, type, description, fileURL, fileName) {
+    const uploadBtn = document.getElementById("upload-btn");
+    const userId = auth.currentUser?.uid || 'anonymous';
     
-    <main class="dashboard-content">
-        <div class="container dashboard-grid-container">
-            <div class="dashboard-sidebar">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="results.html">View Results</a></li>
-                    <li><a href="admit-card.html">Download Admit Card</a></li>
-                    <li><a href="tpc.html">Mock Test Centre</a></li>
-                    <li><a href="downloads.html">Study Resources</a></li>
-                </ul>
-            </div>
-            <div class="dashboard-main">
-                <h2>My Current Courses</h2>
-                <div class="task-card">
-                    <h4>Advanced Mathematics</h4>
-                    <p>Instructor: John Smith</p>
-                    <p>Progress: 40% Complete</p>
-                </div>
-                
-                <h2 style="margin-top: 2rem;">Teacher Uploads / Announcements</h2>
-                <div id="uploads-list">
-                    <p class="no-uploads-message">Loading announcements...</p>
-                </div>
-            </div>
-        </div>
-    </main>
+    // Public Collection Path for shared announcements
+    const collectionPath = `artifacts/${appId}/public/data/teacher_announcements`;
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 CBSN-U. All Rights Reserved.</p>
-        </div>
-    </footer>
-    
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-
-    <script>
-        // Firebase config (same as admin)
-        const firebaseConfig = {
-            apiKey: "AIzaSyCPN3VAXottCg3vDr0fMSu1niSVGNT3V9o",
-            authDomain: "cbsnu-d8dbb.firebaseapp.com",
-            projectId: "cbsnu-d8dbb",
-            storageBucket: "cbsnu-d8dbb.firebasestorage.app",
-            messagingSenderId: "1066269637289",
-            appId: "1:1066269637289:web:cb1977ba240e05a0b587b8",
-            measurementId: "G-TMBEL8E5ZQ"
-        };
-        
-        // Initialize Firebase
-        if (typeof firebase !== 'undefined' && !firebase.apps.length) {
-            firebase.initializeApp(firebaseConfig);
-        }
-        const db = typeof firebase !== 'undefined' ? firebase.firestore() : null;
-
-        // ... (start of script tag)
-    <script>
-        // ... (firebase config and initialization)
-        
-        // Function to load and display uploads from Firestore
-        function displayUploads() {
-            const uploadsList = document.getElementById('uploads-list');
-            uploadsList.innerHTML = '<p class="no-uploads-message">Fetching data...</p>';
-
-            if (!db) {
-                uploadsList.innerHTML = '<p class="no-uploads-message" style="color:#E0B973;">Database is not connected. Please run the website on a server (e.g., Live Server) to fetch announcements.</p>';
-                return;
-            }
-            
-            // USE onSnapshot for real-time updates
-            db.collection("teacher_announcements").orderBy("timestamp", "desc").onSnapshot((snapshot) => {
-                uploadsList.innerHTML = ''; // Clear loading message
-                const uploads = [];
-                snapshot.forEach((doc) => {
-                    uploads.push(doc.data());
-                });
-                
-                if (uploads.length === 0) {
-                    uploadsList.innerHTML = '<p class="no-uploads-message">No new notes or announcements at the moment.</p>';
-                } else {
-                    uploads.forEach(upload => {
-                        // Check if a file was attached and generate a download link
-                        const fileLink = upload.fileURL ? 
-                            `<a href="${upload.fileURL}" target="_blank" class="download-btn" download="${upload.fileName || 'file_download'}">Download ${upload.fileName || 'File'}</a>` : 
-                            '';
-                        
-                        const uploadItem = document.createElement('div');
-                        uploadItem.classList.add('task-card'); // Reusing task-card style
-                        
-                        const details = `
-                            <div style="display:flex; justify-content: space-between; align-items:center;">
-                                <div>
-                                    <h4>${upload.title}</h4>
-                                    <p style="font-size:0.9rem; color:#A9A9A9;">Type: <strong>${upload.type}</strong> - Uploaded: ${upload.date}</p>
-                                </div>
-                                ${fileLink}
-                            </div>
-                            <p style="font-size:0.9rem; margin-top: 10px; color:#ccc;">${upload.description}</p>
-                        `;
-                        
-                        uploadItem.innerHTML = details;
-                        uploadsList.appendChild(uploadItem);
-                    });
-                }
-            }, error => {
-                uploadsList.innerHTML = `<p class="no-uploads-message" style="color:red; font-size:1rem;">Error fetching announcements. Check Firebase Console. Code: ${error.message}</p>`;
-            });
-        }
-        
-        // ... (hamburger logic)
-
-        // Call the display function when the page loads
-        document.addEventListener('DOMContentLoaded', displayUploads);
-    </script>
-</body>
-</html>
-            // Fetch data from the 'teacher_announcements' collection, ordered by timestamp
-            db.collection("teacher_announcements").orderBy("timestamp", "desc").onSnapshot((snapshot) => {
-                uploadsList.innerHTML = ''; // Clear loading message
-                const uploads = [];
-                snapshot.forEach((doc) => {
-                    uploads.push(doc.data());
-                });
-                
-                if (uploads.length === 0) {
-                    uploadsList.innerHTML = '<p class="no-uploads-message">No new notes or announcements at the moment.</p>';
-                } else {
-                    uploads.forEach(upload => {
-                        // Check if a file was attached and generate a download link
-                        const fileLink = upload.fileURL ? 
-                            `<a href="${upload.fileURL}" target="_blank" class="download-btn" download="${upload.fileName || 'file_download'}">Download ${upload.fileName || 'File'}</a>` : 
-                            '';
-                        
-                        const uploadItem = document.createElement('div');
-                        uploadItem.classList.add('task-card'); // Reusing task-card style
-                        
-                        const details = `
-                            <div style="display:flex; justify-content: space-between; align-items:center;">
-                                <div>
-                                    <h4>${upload.title}</h4>
-                                    <p style="font-size:0.9rem; color:#A9A9A9;">Type: <strong>${upload.type}</strong> - Uploaded: ${upload.date}</p>
-                                </div>
-                                ${fileLink}
-                            </div>
-                            <p style="font-size:0.9rem; margin-top: 10px;">${upload.description}</p>
-                        `;
-                        
-                        uploadItem.innerHTML = details;
-                        uploadsList.appendChild(uploadItem);
-                    });
-                }
-            }, error => {
-                uploadsList.innerHTML = `<p class="no-uploads-message" style="color:red; font-size:1rem;">Error fetching announcements. Check Firebase Console. Code: ${error.message}</p>`;
-            });
-        }
-
-        // --- Hamburger Menu Logic ---
-        document.getElementById('hamburger-btn').addEventListener('click', function() {
-            var navLinks = document.getElementById('nav-links');
-            navLinks.classList.toggle('active');
+    try {
+        await addDoc(collection(db, collectionPath), {
+            title,
+            type,
+            description,
+            fileURL: fileURL || null, // Stores the public download URL
+            fileName: fileName || null, // Stores the unique name for deletion
+            date: new Date().toLocaleDateString("en-IN"),
+            timestamp: serverTimestamp(),
+            authorId: userId,
         });
 
-        // Call the display function when the page loads. Using onSnapshot ensures near real-time updates.
-        document.addEventListener('DOMContentLoaded', displayUploads);
-    </script>
-</body>
-</html>
+        displayStatus("Announcement Posted Successfully!", 'success');
+        document.getElementById("upload-form").reset();
+
+    } catch (error) {
+        console.error("Error writing document to Firestore: ", error);
+        displayStatus(`Error posting announcement: ${error.message}`, 'error');
+    } finally {
+        uploadBtn.disabled = false;
+        uploadBtn.textContent = "Post to Student Portal";
+    }
+}
+
+
+// STORAGE UPLOAD HANDLER
+async function handleUpload(event) {
+    event.preventDefault();
+
+    const title = document.getElementById("upload-title").value.trim();
+    const type = document.getElementById("upload-type").value;
+    const description = document.getElementById("upload-description").value.trim();
+    const fileInput = document.getElementById("upload-file");
+    const file = fileInput.files[0];
+    const uploadBtn = document.getElementById("upload-btn");
+
+    if (!title || !type || !description) {
+        displayStatus("Please fill in all required fields.", 'error');
+        return;
+    }
+
+    uploadBtn.disabled = true;
+    uploadBtn.textContent = "Processing...";
+    displayStatus("Processing upload...", 'success');
+
+
+    if (file) {
+        const userId = auth.currentUser?.uid || 'anonymous';
+        // Unique storage path using app ID and timestamp
+        const uniqueFileName = `${Date.now()}_${file.name}`;
+        const storagePath = `artifacts/${appId}/public/files/teacher_announcements/${uniqueFileName}`;
+        const fileRef = storageRef(storage, storagePath);
+
+        const uploadTask = uploadBytesResumable(fileRef, file);
+
+        uploadTask.on('state_changed', 
+            (snapshot) => {
+                // Observe state change events such as progress, pause, and resume
+                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                uploadBtn.textContent = `Upload: ${Math.round(progress)}%`;
+                displayStatus(`Uploading file: ${Math.round(progress)}% done.`, 'success');
+            }, 
+            (error) => {
+                // Handle unsuccessful uploads
+                console.error("Upload error:", error);
+                displayStatus(`File upload failed: ${error.message}`, 'error');
+                uploadBtn.disabled = false;
+                uploadBtn.textContent = "Post to Student Portal";
+            }, 
+            async () => {
+                // Handle successful uploads on complete
+                try {
+                    const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+                    await saveToFirestore(title, type, description, downloadURL, uniqueFileName);
+                } catch (error) {
+                    console.error("Error getting URL or saving to Firestore:", error);
+                    displayStatus(`Error finalizing post: ${error.message}`, 'error');
+                    uploadBtn.disabled = false;
+                    uploadBtn.textContent = "Post to Student Portal";
+                }
+            }
+        );
+    } else {
+        // No file attached, just save metadata
+        await saveToFirestore(title, type, description, null, null);
+    }
+}
+
+
+// STORAGE AND FIRESTORE DELETE FUNCTION
+async function deletePost(docId, fileName) {
+    const confirmation = window.prompt(`Type "DELETE" to confirm deletion of this post (ID: ${docId}):`);
+    if (confirmation !== 'DELETE') {
+        displayStatus("Deletion cancelled.", 'error');
+        return;
+    }
+
+    const docRef = doc(db, `artifacts/${appId}/public/data/teacher_announcements`, docId);
+    
+    try {
+        // 1. Delete file from Firebase Storage (if it exists)
+        if (fileName) {
+            const storagePath = `artifacts/${appId}/public/files/teacher_announcements/${fileName}`;
+            const fileRef = storageRef(storage, storagePath);
+            await deleteObject(fileRef);
+            console.log("File deleted from storage:", fileName);
+        }
+        
+        // 2. Delete document from Firestore
+        await deleteDoc(docRef);
+        
+        displayStatus(`Post and associated file deleted successfully!`, 'success');
+
+    } catch (error) {
+        // Suppress 'file not found' error if only the document needs deleting
+        if (error.code === 'storage/object-not-found' || error.code === 'storage/unknown') {
+            console.warn("Storage object not found or unknown error, continuing with Firestore deletion.");
+            try {
+                 await deleteDoc(docRef);
+                 displayStatus(`Post deleted successfully (File was missing or already removed).`, 'success');
+            } catch (firestoreError) {
+                console.error("Error deleting document:", firestoreError);
+                displayStatus(`Error deleting post: ${firestoreError.message}`, 'error');
+            }
+        } else {
+            console.error("Error during deletion:", error);
+            displayStatus(`Error deleting post: ${error.message}`, 'error');
+        }
+    }
+}
+
+// FIRESTORE LISTENER
+function loadPastPosts() {
+    const pastPostsList = document.getElementById("past-posts-list");
+    // Use an onSnapshot listener for real-time updates
+    const q = query(
+        collection(db, `artifacts/${appId}/public/data/teacher_announcements`),
+        orderBy("timestamp", "desc")
+    );
+
+    onSnapshot(q, (snapshot) => {
+        pastPostsList.innerHTML = ''; // Clear existing list
+
+        if (snapshot.empty) {
+            pastPostsList.innerHTML = `<p style="text-align: center; color: var(--dark-text);">No announcements posted yet.</p>`;
+            return;
+        }
+
+        snapshot.forEach((doc) => {
+            const post = doc.data();
+            const docId = doc.id;
+            const listItem = document.createElement('li');
+            listItem.classList.add('post-item');
+
+            const fileInfo = post.fileURL 
+                ? `<small> (<span style="color: #28a745; font-weight: bold;">File Attached</span>: ${post.fileName || 'N/A'})</small>` 
+                : '';
+            
+            listItem.innerHTML = `
+                <div>
+                    <strong>${post.title}</strong> (${post.type})
+                    <small> - Posted on ${post.date}</small>
+                    ${fileInfo}
+                </div>
+                <button class="post-delete-btn" data-id="${docId}" data-filename="${post.fileName || ''}">Delete</button>
+            `;
+            
+            pastPostsList.appendChild(listItem);
+        });
+
+        // Add event listeners to all new delete buttons
+        pastPostsList.querySelectorAll('.post-delete-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const docId = e.target.getAttribute('data-id');
+                const fileName = e.target.getAttribute('data-filename');
+                deletePost(docId, fileName);
+            });
+        });
+
+    }, (error) => {
+        pastPostsList.innerHTML = `<p class="status-error">Error fetching posts: ${error.message}</p>`;
+        console.error("Error fetching posts:", error);
+    });
+}
+
+
+// --- Event Listeners and Initialization ---
+document.addEventListener("DOMContentLoaded", () => {
+    // 1. Initialize Firebase and sign in
+    initializeFirebase();
+
+    // 2. Attach upload handler
+    document
+        .getElementById("upload-form")
+        .addEventListener("submit", handleUpload);
+});
