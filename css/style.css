@@ -1865,6 +1865,29 @@ footer {
     color: var(--text-muted);
     text-align: center;
 }
+/* style.css (General Styling block ke aas paas ya end mein) */
 
+/* Content Wrapper ko z-index 1 tha, ab usko z-index badha dete hain */
+.content-wrapper {
+    position: relative;
+    z-index: 10; /* Z-index badhaya */
+    min-height: 100vh; /* Ensure it covers full height */
 }
+
+/* Footer ko bhi z-index dekar video ke upar rakhte hain */
+footer {
+    /* ... existing footer styles ... */
+    position: relative;
+    z-index: 10;
+}
+
+/* Header ko bhi z-index de dein taaki woh nav menu ke saath hamesha upar rahe */
+header {
+    /* ... existing header styles ... */
+    position: sticky; /* Sticky position ke liye bhi zaroori */
+    top: 0;
+    z-index: 100;
+}
+}
+
 
