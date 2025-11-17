@@ -6,13 +6,17 @@
 ===== */
 :root {
     /* Default: Coastal Midnight */
-    --bg-darkest: #061222;
-    --bg-dark: #123249;
-    --bg-dark-rgb: 18, 50, 73; /* (RGB of --bg-dark) */
-    --primary: #2D5B75;
-    --accent: #447794;
-    --text-light: #FFFFFF;
-    --text-muted: #E9B48A;
+   /* style.css file mein yeh code add kijiye: */
+body[data-theme="coastal-midnight"] {
+    /* Coastal Midnight ke liye :root wale values ko wapas set kar dijiye */
+    --bg-darkest: #061222;
+    --bg-dark: #123249;
+    --bg-dark-rgb: 18, 50, 73;
+    --primary: #2D5B75;
+    --accent: #447794;
+    --text-light: #FFFFFF;
+    --text-muted: #E9B48A;
+
 }
 body[data-theme="deep-rouge"] {
     --bg-darkest: #040B15;
@@ -1609,5 +1613,6 @@ footer {
         z-index: 2;
         opacity: 1;
     }
+
 
 }
