@@ -1,179 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - CBSN-U</title>
-    
-    <link rel="stylesheet" href="css/style.css"> 
-    
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - CBSN-U</title>
+    
+    <link rel="stylesheet" href="css/style.css"> 
+    
+        <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
-<body data-theme="coastal-midnight"> 
-    
-    <div class="video-background">
-        <video autoplay loop muted playsinline poster="https://placehold.co/1920x1080/040B15/E0B973?text=Video+Background">
-            <source src="image/3163534-uhd_3840_2160_30fps.mp4" type="video/mp4" onerror="this.parentNode.style.display='none'">
-        </video>
-    </div>
+<body data-theme="coastal-midnight"> 
+    
+    <div class="video-background">
+        <video autoplay loop muted playsinline poster="https://placehold.co/1920x1080/040B15/E0B973?text=Video+Background">
+            <source src="image/3163534-uhd_3840_2160_30fps.mp4" type="video/mp4" onerror="this.parentNode.style.display='none'">
+        </video>
+    </div>
 
-    <div class="content-wrapper">
-        <div class="theme-switcher">
-             <div class="theme-dot" id="theme-rouge" title="Deep Rouge"></div>
-             <div class="theme-dot" id="theme-coastal-midnight" title="Coastal Midnight"></div>
-        </div>
+    <div class="content-wrapper">
+                <div class="theme-switcher">
+           <div class="theme-dot" id="theme-rouge" data-theme="deep-rouge" title="Deep Rouge"></div>
+           <div class="theme-dot" id="theme-coastal-midnight" data-theme="coastal-midnight" title="Coastal Midnight"></div>
+           <div class="theme-dot" id="theme-ember" data-theme="warm-ember" title="Warm Ember"></div>
+           <div class="theme-dot" id="theme-gold" data-theme="theme-gold" title="Vintage Gold"></div>
+           <div class="theme-dot" id="theme-teal" data-theme="theme-teal" title="Deep Teal"></div>
+           <div class="theme-dot" id="theme-platinum" data-theme="theme-platinum" title="Platinum"></div>
+           <div class="theme-dot" id="theme-pw-yellow" data-theme="pw-yellow" title="PW Yellow"></div>
+        </div>
 
-        <main>
-            <div class="container">
-                <section id="contact-form-section">
-                    <h2>Contact Us</h2>
-                    <p class="section-subtitle">Contact us today to begin your educational journey.</p>
-                    
-                    <div id="status-message" style="display: none;"></div>
+        <main>
+            <div class="container">
+                <section id="contact-form-section">
+                    <h2>Contact Us</h2>
+                    <p class="section-subtitle">Contact us today to begin your educational journey.</p>
+                    
+                    <div id="status-message" style="display: none;"></div>
 
-                    <form id="contact-form">
-                        <div class="form-group">
-                            <label for="name">Your Name:</label>
-                            <input type="text" id="name" name="from_name" placeholder="Enter your name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email:</label>
-                            <input type="email" id="email" name="user_email" placeholder="Enter your email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number:</label>
-                            <input type="tel" id="phone" name="user_phone" placeholder="Enter your phone number" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject:</label>
-                            <input type="text" id="subject" name="subject" placeholder="Enter the subject" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message:</label>
-                            <textarea id="message" name="message" rows="5" placeholder="Enter your message here" required></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn" id="submit-btn">Send Message</button>
-                    </form>
-                </section>
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Your Name:</label>
+                            <input type="text" id="name" name="from_name" placeholder="Enter your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="user_email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number:</label>
+                            <input type="tel" id="phone" name="user_phone" placeholder="Enter your phone number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject:</label>
+                            <input type="text" id="subject" name="subject" placeholder="Enter the subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message:</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Enter your message here" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn" id="submit-btn">Send Message</button>
+                    </form>
+                </section>
 
-                <section id="contact-info">
-                    <h2>Our Contact Info</h2>
-                    <div class="contact-boxes">
-                        <div class="function-box">
-                            <i class="fas fa-envelope"></i>
-                            <h3>Email</h3>
-                            <p>contact.cbsnu@gmail.com</p>
-                        </div>
-                        <div class="function-box">
-                            <i class="fas fa-phone-alt"></i>
-                            <h3>Call Us</h3>
-                            <p>+91 8709547748</p>
-                        </div>
-                        <div class="function-box">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <h3>Visit Us</h3>
-                            <p>Begusarai, Bihar, 851101</p>
-                        </div>
-                    </div>
-                </section>
+                <section id="contact-info">
+                    <h2>Our Contact Info</h2>
+                    <div class="contact-boxes">
+                        <div class="function-box">
+                            <i class="fas fa-envelope"></i>
+                            <h3>Email</h3>
+                            <p>contact.cbsnu@gmail.com</p>
+                        </div>
+                        <div class="function-box">
+                            <i class="fas fa-phone-alt"></i>
+                            <h3>Call Us</h3>
+                            <p>+91 8709547748</p>
+                        </div>
+                        <div class="function-box">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <h3>Visit Us</h3>
+                            <p>Begusarai, Bihar, 851101</p>
+                        </div>
+                    </div>
+                </section>
 
-            </div>
-        </main>
-        
-        <footer>
-            <div class="footer-content">
-                 <div class="footer-col">
-                    <h3>CBSN-U</h3>
-                    <p>Cross Border Study Network -U</p>
-                    <p>Founder & CEO: Ritik Raj</p>
-                </div>
-                <div class="footer-col">
-                    <h3>Contact Us</h3>
-                    <p>Email: contact.cbsnu@gmail.com</p>
-                    <p>Phone: +91 8709547748</p>
-                    <p>Address: Begusarai, Bihar, 851101, India</p>
-                </div>
-                <div class="footer-col">
-                    <h3>Quick Links</h3>
-                    <a href="franchise.html">Franchise</a>
-                    <a href="contact.html">Contact</a>
-                    <a href="rti.html">RTI</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 CBSN-U. All rights reserved. | Website: cbsnu.in</p>
-            </div>
-        </footer>
-    </div>
-    
-    <script>
-        // --- Email.js Initialization ---
-        // Public Key: DqEZGom9bxso5B5Zl
-        emailjs.init("DqEZGom9bxso5B5Zl"); 
+            </div>
+        </main>
+        
+        <footer>
+            <div class="footer-content">
+                 <div class="footer-col">
+                    <h3>CBSN-U</h3>
+                    <p>Cross Border Study Network -U</p>
+                    <p>Founder & CEO: Ritik Raj</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <p>Email: contact.cbsnu@gmail.com</p>
+                    <p>Phone: +91 8709547748</p>
+                    <p>Address: Begusarai, Bihar, 851101, India</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <a href="franchise.html">Franchise</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="rti.html">RTI</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 CBSN-U. All rights reserved. | Website: cbsnu.in</p>
+            </div>
+        </footer>
+    </div>
+    
+    <script>
+        // --- Email.js Initialization ---
+        emailjs.init("DqEZGom9bxso5B5Zl"); 
 
-        // --- DOM Elements ---
-        const form = document.getElementById('contact-form');
-        const submitBtn = document.getElementById('submit-btn');
-        const statusMessage = document.getElementById('status-message');
-        
-        // --- Utility Functions ---
-        function showStatus(message, type) {
-            statusMessage.style.display = 'block';
-            statusMessage.textContent = message;
-            
-            // Apply utility styles for visibility
-            statusMessage.style.padding = '15px';
-            statusMessage.style.margin = '15px 0';
-            statusMessage.style.borderRadius = '5px';
-            statusMessage.style.textAlign = 'center';
-            statusMessage.style.fontWeight = 'bold';
-            
-            // Assign CSS classes (defined in style.css)
-            statusMessage.className = type; 
-        }
+        // --- DOM Elements ---
+        const form = document.getElementById('contact-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const statusMessage = document.getElementById('status-message');
+        
+        // --- Utility Functions ---
+        function showStatus(message, type) {
+            statusMessage.style.display = 'block';
+            statusMessage.textContent = message;
+            
+            // Apply utility styles for visibility
+            statusMessage.style.padding = '15px';
+            statusMessage.style.margin = '15px 0';
+            statusMessage.style.borderRadius = '5px';
+            statusMessage.style.textAlign = 'center';
+            statusMessage.style.fontWeight = 'bold';
+            
+            // Assign CSS classes (defined in style.css)
+            statusMessage.className = type; 
+        }
 
-        // --- Handle Form Submission for Email.js ---
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Sending...';
-            statusMessage.style.display = 'none';
+        // --- Handle Form Submission for Email.js ---
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            statusMessage.style.display = 'none';
 
-            try {
-                // Service ID: 'service_nvwp74b', Template ID: 'template_1d072cu'
-                await emailjs.sendForm('service_nvwp74b', 'template_1d072cu', form);
-                
-                showStatus('Message sent successfully! We will contact you soon.', 'success');
-                form.reset();
-            } catch (error) {
-                console.error("Error sending email: ", error);
-                showStatus(`Error sending message. Please check the console or try calling us.`, 'error');
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Send Message';
-            }
-        });
+            try {
+                // Service ID: 'service_nvwp74b', Template ID: 'template_1d072cu'
+                await emailjs.sendForm('service_nvwp74b', 'template_1d072cu', form);
+                
+                showStatus('Message sent successfully! We will contact you soon.', 'success');
+                form.reset();
+            } catch (error) {
+                console.error("Error sending email: ", error);
+                showStatus(`Error sending message. Please check the console or try calling us.`, 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send Message';
+            }
+        });
 
-        // --- Theme Switcher Logic ---
-        document.querySelectorAll('.theme-dot').forEach(dot => {
-            dot.addEventListener('click', function() {
-                const theme = this.id.replace('theme-', '');
-                document.body.setAttribute('data-theme', theme);
-            });
-        });
-        
-        // Handle video load error gracefully
-        const video = document.querySelector('.video-background video');
-        if (video) {
-            video.onerror = function() {
-                this.parentNode.style.display = 'none';
-                document.body.style.backgroundImage = 'linear-gradient(to bottom, #040B15, #1A1A1A)';
-            };
-        }
-    </script>
+        // --- Theme Switcher Logic ---
+        document.querySelectorAll('.theme-dot').forEach(dot => {
+            // Ab hum data-theme attribute use kar rahe hain
+            const theme = dot.getAttribute('data-theme');
+            
+            dot.addEventListener('click', function() {
+                document.body.setAttribute('data-theme', theme);
+            });
+        });
+        
+        // Handle video load error gracefully
+        const video = document.querySelector('.video-background video');
+        if (video) {
+            video.onerror = function() {
+                this.parentNode.style.display = 'none';
+                // Fallback background agar video fail ho
+                document.body.style.backgroundImage = 'linear-gradient(to bottom, #040B15, #1A1A1A)';
+            };
+        }
+    </script>
 </body>
 </html>
-```eof
