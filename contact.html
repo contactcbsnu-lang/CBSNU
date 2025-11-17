@@ -5,18 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - CBSN-U</title>
     
-    <!-- CSS file is correctly linked -->
     <link rel="stylesheet" href="css/style.css"> 
     
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
-    <!-- Email.js CDN for form submission -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body data-theme="coastal-midnight"> 
     
-    <!-- Video Background (Placeholder or actual video) -->
     <div class="video-background">
         <video autoplay loop muted playsinline poster="https://placehold.co/1920x1080/040B15/E0B973?text=Video+Background">
             <source src="image/3163534-uhd_3840_2160_30fps.mp4" type="video/mp4" onerror="this.parentNode.style.display='none'">
@@ -35,34 +32,27 @@
                     <h2>Contact Us</h2>
                     <p class="section-subtitle">Contact us today to begin your educational journey.</p>
                     
-                    <!-- Status Message Box -->
                     <div id="status-message" style="display: none;"></div>
 
                     <form id="contact-form">
-                        <!-- IMPORTANT: 'name' attribute must match your Email.js template variables -->
                         <div class="form-group">
                             <label for="name">Your Name:</label>
-                            <!-- Name used in Email.js template as 'from_name' -->
                             <input type="text" id="name" name="from_name" placeholder="Enter your name" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email:</label>
-                            <!-- Name used in Email.js template as 'user_email' -->
                             <input type="email" id="email" name="user_email" placeholder="Enter your email" required>
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone Number:</label>
-                            <!-- Name used in Email.js template as 'user_phone' -->
                             <input type="tel" id="phone" name="user_phone" placeholder="Enter your phone number" required>
                         </div>
                         <div class="form-group">
                             <label for="subject">Subject:</label>
-                            <!-- Name used in Email.js template as 'subject' -->
                             <input type="text" id="subject" name="subject" placeholder="Enter the subject" required>
                         </div>
                         <div class="form-group">
                             <label for="message">Message:</label>
-                            <!-- Name used in Email.js template as 'message' -->
                             <textarea id="message" name="message" rows="5" placeholder="Enter your message here" required></textarea>
                         </div>
                         <button type="submit" class="submit-btn" id="submit-btn">Send Message</button>
@@ -75,7 +65,6 @@
                         <div class="function-box">
                             <i class="fas fa-envelope"></i>
                             <h3>Email</h3>
-                            <!-- Updated email ID as requested by the user -->
                             <p>contact.cbsnu@gmail.com</p>
                         </div>
                         <div class="function-box">
@@ -93,6 +82,7 @@
 
             </div>
         </main>
+        
         <footer>
             <div class="footer-content">
                  <div class="footer-col">
@@ -102,7 +92,6 @@
                 </div>
                 <div class="footer-col">
                     <h3>Contact Us</h3>
-                    <!-- Updated email ID in the footer -->
                     <p>Email: contact.cbsnu@gmail.com</p>
                     <p>Phone: +91 8709547748</p>
                     <p>Address: Begusarai, Bihar, 851101, India</p>
@@ -120,32 +109,29 @@
         </footer>
     </div>
     
-    <!-- JavaScript for Email.js Submission -->
     <script>
-        // Initialize Email.js with the Public Key
-        emailjs.init("DqEZGom9bxso5B5Zl");
+        // --- Email.js Initialization ---
+        // Public Key: DqEZGom9bxso5B5Zl
+        emailjs.init("DqEZGom9bxso5B5Zl"); 
 
         // --- DOM Elements ---
         const form = document.getElementById('contact-form');
         const submitBtn = document.getElementById('submit-btn');
         const statusMessage = document.getElementById('status-message');
         
-        // IMPORTANT NOTE: The actual recipient email (contact.cbsnu@gmail.com) 
-        // must be set in your Email.js template settings for 'template_1d072cu'.
-
         // --- Utility Functions ---
         function showStatus(message, type) {
             statusMessage.style.display = 'block';
             statusMessage.textContent = message;
             
-            // Apply status message styles
+            // Apply utility styles for visibility
             statusMessage.style.padding = '15px';
             statusMessage.style.margin = '15px 0';
             statusMessage.style.borderRadius = '5px';
             statusMessage.style.textAlign = 'center';
             statusMessage.style.fontWeight = 'bold';
             
-            // Assign CSS classes for styling (success/error)
+            // Assign CSS classes (defined in style.css)
             statusMessage.className = type; 
         }
 
@@ -156,7 +142,6 @@
             submitBtn.textContent = 'Sending...';
             statusMessage.style.display = 'none';
 
-            // Email.js sendForm method uses the form element itself
             try {
                 // Service ID: 'service_nvwp74b', Template ID: 'template_1d072cu'
                 await emailjs.sendForm('service_nvwp74b', 'template_1d072cu', form);
@@ -180,7 +165,7 @@
             });
         });
         
-        // Ensure video is not broken on error
+        // Handle video load error gracefully
         const video = document.querySelector('.video-background video');
         if (video) {
             video.onerror = function() {
@@ -191,3 +176,4 @@
     </script>
 </body>
 </html>
+```eof
