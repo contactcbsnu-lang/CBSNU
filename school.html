@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examinations - For Schools - CBSN-U</title>
+    <link rel="stylesheet" href="css/style.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body data-theme="coastal-midnight"> <div class="video-background">
+        <video autoplay loop muted playsinline>
+            <source src="image/3163534-uhd_3840_2160_30fps.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div class="content-wrapper">
+
+        <div class="theme-switcher">
+             <div class="theme-dot" id="theme-rouge" title="Deep Rouge"></div>
+            <div class="theme-dot" id="theme-ember" title="Warm Ember"></div>
+            <div class="theme-dot" id="theme-gold" title="Regal Gold"></div>
+            <div class="theme-dot" id="theme-teal" title="Spectral Teal"></div>
+            <div class="theme-dot" id="theme-platinum" title="Modern Platinum"></div>
+            <div class="theme-dot" id="theme-midnight" title="Coastal Midnight"></div>
+            <div class="theme-dot" id="theme-pw-yellow" title="PW Yellow"></div>
+        </div>
+
+        <header>
+             <div class="logo-container">
+                <img src="image/1744649096909.png" alt="CBSN-U Logo" class="logo">
+                <h1>CBSN-U</h1>
+            </div>
+            <button class="nav-toggle" aria-label="toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+            <div class="nav-menu">
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li class="dropdown">
+                            <a href="about.html">About Us ▾</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="about.html">About CBSN-U</a></li>
+                                <li><a href="vision.html">Vision</a></li>
+                                <li><a href="objectives.html">Objectives</a></li>
+                                <li><a href="functions.html">Functions</a></li>
+                                <li><a href="governing-body.html">Governing Body</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="exams.html">Exams ▾</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="exams.html">For Institutes</a></li>
+                                <li><a href="school.html">For Schools</a></li>
+                                <li><a href="cbsnu-exams.html">CBSN-U Exams</a></li>
+                                <li><a href="coaching.html">Coaching Collaborations</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="tpc.html">Test Practice Centre</a></li>
+                        <li><a href="rti.html">RTI</a></li>
+                        <li><a href="franchise.html">Franchise</a></li>
+                        <li><a href="downloads.html">Downloads</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </nav>
+                <div class="login-dropdown dropdown">
+                    <button class="login-btn">Login/Signup ▾</button>
+                    <ul class="dropdown-menu">
+                        <li><a href="login-student.html">Students Login</a></li>
+                        <li><a href="login-admin.html">Admin Login</a></li>
+                        <li><a href="login-school.html">School Login</a></li>
+                        <li><a href="login-institute.html">Institute/Coaching Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <main class="page-main-content">
+            <div class="page-hero">
+                <h1>Our Examinations</h1>
+                <p>Secure, scalable, and transparent testing solutions for every partner.</p>
+            </div>
+
+            <div class="about-page-container">
+                
+                <nav class="about-nav">
+                    <a href="exams.html">For Institutes</a>
+                    <a href="school.html" class="active">For Schools</a>
+                    <a href="cbsnu-exams.html">CBSN-U Exams</a>
+                    <a href="coaching.html">Coaching Collaborations</a>
+                </nav>
+
+                <div class="about-content">
+                    
+                    <section id="school" class="content-section">
+                        <h2>CBSNU: School Partnership Proposal</h2>
+                        <p>CBSNU is committed to enhancing your academic standards and brand quality. Use our calculator below to see the benefits.</p>
+
+                        <div class="fee-result mb-6">
+                            <h3 class="text-center mb-4">Annual Fee & Benefits Calculator</h3>
+                            
+                            <div class="form-grid">
+                                <div>
+                                    <label for="schoolName">School Name:</label>
+                                    <input type="text" id="schoolName" value="Adarsh Public School" class="form-input">
+                                </div>
+                                <div>
+                                    <label for="principalName">Principal's Name:</label>
+                                    <input type="text" id="principalName" value="Mr. Alok Verma" class="form-input">
+                                </div>
+                                <div>
+                                    <label for="currentDate">Date:</label>
+                                    <input type="date" id="currentDate" value="2025-11-15" class="form-input">
+                                </div>
+                            </div>
+
+                            <div class="form-grid">
+                                <div>
+                                    <label for="studentCount">Number of Students:</label>
+                                    <input type="number" id="studentCount" value="200" min="1" required class="form-input">
+                                </div>
+                                <div>
+                                    <label for="paymentPlan">Select Payment Plan:</label>
+                                    <select id="paymentPlan" class="form-input">
+                                        <option value="monthly">Monthly (₹1320 Annual Value)</option>
+                                        <option value="quarterly">Quarterly (₹1296 Annual Value)</option>
+                                        <option value="annual">Annual Upfront (₹1250 Annual Value)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button onclick="calculateBenefits()" class="btn-calculate">
+                                Calculate Benefits & Fee
+                            </button>
+                            <div id="feeOutput" class="mt-4">
+                                <p class="text-center">Please calculate above.</p>
+                            </div>
+                        </div>
+
+
+                        <h2 class="section-title">1. Testing & Logistics Guarantee</h2>
+                        <div class="detail-item">
+                            <strong>Contract:</strong> Minimum 1-year contract.
+                        </div>
+                        <div class="detail-item">
+                            <strong>Tests & Results:</strong> 24 Tests and 12 Results guaranteed in 1 year.
+                        </div>
+                        <div class="detail-item">
+                            <strong>High-Security Materials:</strong> Every student's <strong>Question Paper</strong> and <strong>Answer Sheet</strong> will be printed with their name, roll number, and school name, and <strong>sealed in a secure cover page</strong>.
+                        </div>
+                        <div class="detail-item">
+                            <strong>ID Cards:</strong> High-quality ID Cards will be provided for all <strong>students</strong> and <strong>teachers</strong> <strong>(Completely Free)</strong>.
+                        </div>
+
+                        <h2 class="section-title">2. Branding & Academic Transparency</h2>
+                        <div class="detail-item">
+                            <strong>QR Code Transparency:</strong> Every result will have a QR Code. Scanning it will show photos of both test copies for that month, eliminating the hassle of showing copies to students/parents.
+                        </div>
+                        <div class="detail-item">
+                            <strong>Promotional Ad Paper (Free):</strong> An additional paper will be provided with the result. One side will be a <strong>customized advertising pamphlet</strong> for the school (design provided by CBSN-U for <strong>free</strong>).
+                            <p class="text-sm mt-1">Guarantee: CBSN-U will not advertise any rival school on this paper.</p>
+                        </div>
+                        <div class="detail-item">
+                            <strong>T-Shirts (Resale Income):</strong> Dual-branded T-Shirts will be provided for all students, which the school can <strong>resell</strong> for additional income.
+                        </div>
+                        <div class="detail-item">
+                            <strong>Custom Banners (As per your fund):</strong> A banner fund will be allocated based on the number of students.
+                            <div id="bannerOutput" class="banner-options">
+                                <p class="text-center">Please calculate above to see banner options.</p>
+                            </div>
+                        </div>
+                        
+                        <h2 class="section-title">3. Rewards & Financial Perks</h2>
+                        <div class="detail-item">
+                            <strong>Scholarship Pool (Min. Allocation):</strong> A minimum scholarship pool of <strong><span id="scholarshipPool">---</span></strong> will be created (at ₹125 per student).
+                        </div>
+                        <div class="detail-item">
+                            <strong>Best Teacher Award:</strong> A Best Teacher Award of up to <strong><span id="teacherAward">---</span></strong> will be given from the scholarship fund (Max ₹50,000).
+                        </div>
+                        <div class="detail-item">
+                            <strong>Student Gifts (Max ₹50/student):</strong> From the remaining fund, each student will receive a gift worth approximately <strong><span id="perStudentGift">---</span></strong>.
+                        </div>
+                        <div class="detail-item">
+                            <strong>Equipment Upgrade Gift:</strong> Based on the fee difference, an Equipment Gift (Laptop, Projector, etc.) of up to <strong><span id="giftFundActual">---</span></strong> will be provided (Max ₹2,50,000).
+                            <div id="equipmentOutput" class="mt-2 equipment-list-container">
+                                <p>Available equipment will be displayed here.</p>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <strong>Monthly Billing Service:</strong> CBSN-U will also prepare the students' <strong>monthly bills</strong> along with the results, ending the school's billing and distribution stress.
+                        </div>
+                        <div class="detail-item">
+                            <strong>Payment Options & Terms:</strong>
+                            <p class="text-sm text-red-600 mt-1">All payments are <strong>Advance</strong>. All Fixed Perks (T-Shirts, Banners, Equipment) will be available **Immediately** only on the **Annual Upfront** plan, and at the **end of the year** for other plans.</p>
+                        </div>
+
+                        <h2 class="section-title text-purple">4. ✨ Parent Communication Aid</h2>
+                        <div class="detail-item detail-item-ai">
+                            <p class="mb-3">Based on your selected benefits, get an attractive communication draft to send to parents.</p>
+                            <button id="generatePitchBtn" onclick="generateParentPitch()" class="btn-calculate btn-ai" disabled>
+                                ✨ Draft Message for Parents
+                            </button>
+                            <div id="pitchOutput" class="ai-output">
+                                Message will be displayed here...
+                            </div>
+                        </div>
+                        
+                    </section> </div>
+            </div>
+        </main>
+        <footer>
+            <div class="footer-content">
+                 <div class="footer-col">
+                    <h3>CBSN-U</h3>
+                    <p>Cross Border Study Network -U</p>
+                    <p>Founder & CEO: Ritik Raj</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <p>Email: cbsnu.contact@gmail.com</p>
+                    <p>Phone: +91 8709547748</p>
+                    <p>Address: Begusarai, Bihar, 851101, India</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <a href="franchise.html">Franchise</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="rti.html">RTI</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 CBSN-U. All rights reserved. | Website: cbsnu.live</p>
+            </div>
+        </footer>
+
+    </div> <script src="js/script.js"></script>
+
+    <script>
+        // Gemini API Constants
+        const GEMINI_API_URL = 'https://generativeluanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=';
+        // !!! IMPORTANT: You must add your actual API key here for the AI feature to work !!!
+        const apiKey = "AIzaSyDrxEz4waIdBGgU_FJHHU_e0mwpYo8x1z4"; // [REDACTED FOR SECURITY]
+
+        // Helper function for exponential backoff 
+        async function exponentialBackoff(fn, maxRetries = 3) {
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    return await fn();
+                } catch (error) {
+                    if (i === maxRetries - 1) throw error;
+                    const delay = Math.pow(2, i) * 1000;
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                }
+            }
+        }
+
+        async function callGeminiAPI(prompt, systemInstruction) {
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }],
+                systemInstruction: { parts: [{ text: systemInstruction }] },
+            };
+
+            return exponentialBackoff(async () => {
+                const response = await fetch(GEMINI_API_URL + apiKey, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`API call failed with status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                return text || "Error: LLM could not generate content.";
+            });
+        }
+
+        // --- PARENT PITCH GENERATOR FUNCTION ---
+        async function generateParentPitch() {
+            const btn = document.getElementById('generatePitchBtn');
+            const outputDiv = document.getElementById('pitchOutput');
+            
+            // Retrieve calculated data displayed on the page
+            const schoolName = document.getElementById('schoolName').value;
+            const principalName = document.getElementById('principalName').value;
+            const currentDate = document.getElementById('currentDate').value;
+            const studentCount = document.getElementById('studentCount').value;
+            const scholarshipPool = document.getElementById('scholarshipPool').textContent;
+            const equipmentItem = document.getElementById('equipmentOutput').querySelector('li')?.textContent || 'no major equipment';
+            
+            if (parseInt(studentCount) < 1 || schoolName.trim() === '' || principalName.trim() === '') {
+                outputDiv.innerHTML = "<p class='text-red-500'>Please enter student count and all school details to calculate.</p>";
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = "Drafting message...";
+            outputDiv.innerHTML = "<p>Loading...</p>";
+
+            const systemInstruction = "You are an academic communications expert. You must write a professional, enthusiastic, and concise (3-paragraph) letter (in English) for parents announcing a new partnership with CBSNU. Emphasize transparency, security, and student benefits (Rewards). **Do NOT mention the annual fee or any payment amount.** Do not call T-Shirts 'free', but DO call ID Cards 'free'.";
+            
+            const prompt = `Today's date is ${currentDate}. The letter is from ${principalName}, Principal of ${schoolName}. The school has ${studentCount} students. Include these benefits in the letter: 1. 100% transparency of their child's answer sheets via QR Code. 2. A total scholarship pool of ${scholarshipPool}. 3. Free ID Cards for all students. 4. The school has received a new ${equipmentItem}. 5. Students will receive dual-branded T-Shirts for resale. Emphasize that CBSNU ensures purity and fairness in examinations.`;
+
+            try {
+                const resultText = await callGeminiAPI(prompt, systemInstruction);
+                const formattedText = resultText.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>');
+                outputDiv.innerHTML = `<div id="pitchContent">${formattedText}</div><button onclick="printPitch()" class="btn-calculate btn-print">Print Draft</button>`;
+            } catch (error) {
+                outputDiv.innerHTML = `<p class="text-red-500">Error: Could not draft message. Please try again. (${error.message})</p>`;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = `✨ Draft Message for Parents`;
+            }
+        }
+        
+        // --- Print function for the pitch ---
+        function printPitch() {
+            const pitchContent = document.getElementById('pitchContent').innerHTML;
+            const schoolName = document.getElementById('schoolName').value;
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
+                <html>
+                <head><title>Parent Communication Draft - ${schoolName}</title>
+                <style>body { font-family: 'Times New Roman', serif; line-height: 1.6; } h2 { text-align: center; } </style>
+                </head>
+                <body>
+                    <h2>A Message for Our Valued Parents</h2>
+                    ${pitchContent}
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+            printWindow.print();
+        }
+
+        // --- FINALIZED CONSTANTS AND PERCENTAGE LOGIC (Repeated for independence) ---
+        const ANNUAL_FEES = {
+            monthly: 1320,
+            quarterly: 1296,
+            annual: 1250
+        };
+        
+        const PERCENTAGES = {
+            FIXED_REWARD: 0.1613, 
+            GIFT_FUND: 0.0909,
+            BANNER_FUND_PERCENT: 0.009, 
+        };
+
+        const MAX_TEACHER_AWARD = 50000;
+        const MAX_EQUIPMENT_GIFT = 250000;
+        const MAX_PER_STUDENT_GIFT = 50;
+        const MAX_BANNER_COST = 15000;
+
+        const SCHOLARSHIP_PER_STUDENT = 125;
+        const TEACHER_AWARD_PERCENT_OF_REWARD_FUND = 0.10; 
+
+        function formatCurrency(amount) {
+            return '₹' + Math.round(amount).toLocaleString('en-IN');
+        }
+
+        // --- EQUIPMENT CHART DATA (50 Levels of ₹5,000 AP) ---
+        const EQUIPMENT_CHART = [
+            { sn: 1, max: 10000, equipment: 'Monochrome All-in-One Printer' },
+            { sn: 2, max: 15000, equipment: 'Classroom Audio Kit (Speakers + Mic)' },
+            { sn: 3, max: 20000, equipment: 'Branded Desktop PC (Entry-Level/Refurbished)' },
+            { sn: 4, max: 25000, equipment: 'Mini/Portable Smart Projector' },
+            { sn: 5, max: 30000, equipment: 'High-Quality Color Printer (Heavy Duty)' },
+            { sn: 6, max: 35000, equipment: 'Data Management Laptop (Core i3/Ryzen 3)' },
+            { sn: 7, max: 40000, equipment: 'Advanced Projector (High Brightness)' },
+            { sn: 8, max: 45000, equipment: 'Teacher Workstation Upgrade (2 Monitor/Ergonomic Chair)' },
+            { sn: 9, max: 50000, equipment: 'Computer Lab Kit (2 Desktop Units)' },
+            { sn: 10, max: 55000, equipment: 'School Conference/Meeting Room Audio-Visual System' },
+            { sn: 11, max: 60000, equipment: 'Power Backup System (UPS for Server/Lab)' },
+            { sn: 12, max: 65000, equipment: 'Interactive Whiteboard/Display (Small)' },
+            { sn: 13, max: 70000, equipment: 'Computer Lab Kit (3 Desktop Units)' },
+            { sn: 14, max: 75000, equipment: 'High-Speed Wi-Fi Infrastructure' },
+            { sn: 15, max: 80000, equipment: 'Advanced CCTV Camera Setup (2-3 Units)' },
+            { sn: 16, max: 85000, equipment: 'Teacher Training Center Upgrade (Projector + Laptop)' },
+            { sn: 17, max: 90000, equipment: 'Computer Lab Kit (4 Desktop Units)' },
+            { sn: 18, max: 95000, equipment: 'Sales/Admission Desk IT Setup' },
+            { sn: 19, max: 100000, equipment: 'School Conference Room Projector and AC' },
+            { sn: 20, max: 105000, equipment: 'Computer Lab Kit (5 Desktop Units)' },
+            { sn: 21, max: 110000, equipment: 'Digital Library Access System' },
+            { sn: 22, max: 115000, equipment: 'Computer Lab Kit (6 Desktop Units)' },
+            { sn: 23, max: 120000, equipment: 'High-End Color Printer and Finishing Machine' },
+            { sn: 24, max: 125000, equipment: 'Computer Lab Kit (7 Desktop Units)' },
+            { sn: 25, max: 130000, equipment: 'Teacher Laptop Replacement Program (2-3 Laptops)' },
+            { sn: 26, max: 135000, equipment: 'Computer Lab Kit (8 Desktop Units)' },
+            { sn: 27, max: 140000, equipment: 'School Server Upgrade (Data Security)' },
+            { sn: 28, max: 145000, equipment: 'Computer Lab Kit (9 Desktop Units)' },
+            { sn: 29, max: 150000, equipment: 'Advanced CCTV and Security Monitoring System' },
+            { sn: 30, max: 155000, equipment: 'Computer Lab Kit (10 Desktop Units)' },
+            { sn: 31, max: 160000, equipment: 'Science Lab Digital Sensor/Kit' },
+            { sn: 32, max: 165000, equipment: 'Computer Lab Kit (11 Desktop Units)' },
+            { sn: 33, max: 170000, equipment: 'Smart Classroom Display (2 Units)' },
+            { sn: 34, max: 175000, equipment: 'Computer Lab Kit (12 Desktop Units)' },
+            { sn: 35, max: 180000, equipment: 'School Bus Tracking and Communication System' },
+            { sn: 36, max: 185000, equipment: 'Computer Lab Kit (13 Desktop Units)' },
+            { sn: 37, max: 190000, equipment: 'Teacher Training Center Upgrade (AC + Full Setup)' },
+            { sn: 38, max: 195000, equipment: 'Computer Lab Kit (14 Desktop Units)' },
+            { sn: 39, max: 200000, equipment: 'Advanced Server and Cloud Backup System' },
+            { sn: 40, max: 205000, equipment: 'Computer Lab Kit (15 Desktop Units)' },
+            { sn: 41, max: 210000, equipment: 'Music/Arts Lab Digital Equipment' },
+            { sn: 42, max: 215000, equipment: 'Computer Lab Kit (16 Desktop Units)' },
+            { sn: 43, max: 220000, equipment: 'New Furniture for Principal Office/Staff Room' },
+            { sn: 44, max: 225000, equipment: 'Computer Lab Kit (17 Desktop Units)' },
+            { sn: 45, max: 230000, equipment: 'Central Auditorium Audio Visual Upgrade' },
+            { sn: 46, max: 235000, equipment: 'Computer Lab Kit (18 Desktop Units)' },
+            { sn: 47, max: 240000, equipment: 'Sports Equipment Digital Tracking' },
+            { sn: 48, max: 245000, equipment: 'Computer Lab Kit (19 Desktop Units)' },
+            { sn: 49, max: 250000, equipment: 'Computer Lab Kit (20 Desktop Units)' },
+            { sn: 50, max: 250000, equipment: 'Maximum Benefit: ₹2,50,000 Total Limit Reached' }
+        ];
+
+        // --- NEW EQUIPMENT DISPLAY FUNCTION ---
+        function displayEquipmentOptions(giftFund) {
+            let html = `<ul class="equipment-list">`;
+            let lowerBound = 0;
+            let selectedItem = null;
+
+            for (const item of EQUIPMENT_CHART) {
+                if (giftFund > lowerBound && giftFund <= item.max) {
+                    selectedItem = item;
+                    break;
+                } else if (giftFund > item.max && item.max === MAX_EQUIPMENT_GIFT) {
+                    selectedItem = item;
+                    break;
+                }
+                lowerBound = item.max;
+            }
+
+            if (selectedItem) {
+                const rangeStart = selectedItem.sn === 1 ? 5000 : lowerBound + 1;
+                const rangeEnd = selectedItem.max;
+                html += `<li class="equipment-item-main">(${selectedItem.sn}.) ${selectedItem.equipment}</li>`;
+                html += `<p class="equipment-note"><strong>This item reflects your current fund level.</strong></p>`;
+                html += `<p class="equipment-note"><strong>Fund Range:</strong> ${formatCurrency(rangeStart)} to ${formatCurrency(rangeEnd)}</p>`;
+            } else {
+                html += `<li class="equipment-item-main">(0.) Fund is below ₹5,000. No item available.</li>`;
+            }
+
+            html += `</ul>`;
+            return html;
+        }
+
+        // --- UPDATED BANNER LOGIC ---
+        function getBannerBreakdown(bannerFund) {
+            const BANNER_COST_PER_SQFT = 17;
+            const LARGE_AREA = 128; // 16x8 ft
+            const MEDIUM_AREA = 32; // 8x4 ft
+            const SMALL_AREA = 12; // 4x3 ft
+            const COST_SMALL_BANNER = SMALL_AREA * BANNER_COST_PER_SQFT; // ₹204
+            const COMPLETION_THRESHOLD = COST_SMALL_BANNER * 0.90; // ₹183.60
+            
+            const actualBannerFund = Math.min(bannerFund, MAX_BANNER_COST);
+            const bannerSurplus = bannerFund - actualBannerFund;
+            const totalAreaSqFt = actualBannerFund / BANNER_COST_PER_SQFT;
+
+            let combinationsHTML = `<p class="banner-total">Total Fund (Max ₹15K): ${formatCurrency(actualBannerFund)} (${totalAreaSqFt.toFixed(2)} sq ft)</p>`;
+            
+            if (totalAreaSqFt < SMALL_AREA) {
+                return { html: combinationsHTML + `<p class="text-red-600">Banner fund insufficient.</p>`, cost: actualBannerFund, bannerSurplus: bannerSurplus };
+            }
+            
+            let combinationsList = '';
+            let minLeftoverArea = totalAreaSqFt; 
+            
+            const maxLargeBanners = Math.floor(totalAreaSqFt / LARGE_AREA);
+            
+            for (let numLarge = 0; numLarge <= maxLargeBanners; numLarge++) {
+                const areaUsedByLarge = numLarge * LARGE_AREA;
+                const areaRemainingAfterLarge = totalAreaSqFt - areaUsedByLarge;
+                const maxMediumBanners = Math.floor(areaRemainingAfterLarge / MEDIUM_AREA);
+
+                for (let numMedium = 0; numMedium <= maxMediumBanners; numMedium++) {
+                    const areaUsedByMedium = numMedium * MEDIUM_AREA;
+                    let areaRemaining = areaRemainingAfterLarge - areaUsedByMedium;
+                    let numSmall = Math.floor(areaRemaining / SMALL_AREA);
+                    let areaLeft = areaRemaining - (numSmall * SMALL_AREA);
+                    
+                    if (areaLeft >= 0 && areaLeft < minLeftoverArea) {
+                        minLeftoverArea = areaLeft;
+                    }
+
+                    let cbsnuContribution = 0;
+                    let boostText = '';
+                    
+                    if (areaLeft > 0 && (areaLeft * BANNER_COST_PER_SQFT) >= COMPLETION_THRESHOLD) {
+                        const costRemaining = areaLeft * BANNER_COST_PER_SQFT;
+                        cbsnuContribution = COST_SMALL_BANNER - costRemaining;
+                        numSmall++;
+                        areaLeft = 0;
+                        boostText = ` <span class="cbsnu-boost">(CBSNU Boost: ${formatCurrency(cbsnuContribution)} added)</span>`;
+                    }
+
+                    if (numLarge > 0 || numMedium > 0 || numSmall > 0 || cbsnuContribution > 0) {
+                        combinationsList += `
+                            <div class="banner-option">
+                                <span>${numLarge} x 16x8 ft</span> + 
+                                <span>${numMedium} x 8x4 ft</span> +
+                                <span>${numSmall} x 4x3 ft</span> 
+                                <span class="banner-leftover">(${areaLeft.toFixed(2)} sq ft left)</span>
+                                ${boostText}
+                            </div>
+                        `;
+                    }
+                }
+            }
+            
+            combinationsHTML += `<p class="banner-subtitle">All Possible Options:</p><div class="combination-list">${combinationsList}</div>`;
+            const moneyLeftoverFromActualSpend = minLeftoverArea * BANNER_COST_PER_SQFT;
+            return { html: combinationsHTML, cost: actualBannerFund, bannerSurplus: bannerSurplus + moneyLeftoverFromActualSpend };
+        }
+
+        function calculateBenefits() {
+            const count = parseInt(document.getElementById('studentCount').value);
+            const plan = document.getElementById('paymentPlan').value;
+            const schoolName = document.getElementById('schoolName').value;
+            const principalName = document.getElementById('principalName').value;
+            const currentDate = document.getElementById('currentDate').value;
+
+            if (isNaN(count) || count < 1 || schoolName.trim() === '' || principalName.trim() === '' || currentDate.trim() === '') {
+                document.getElementById('feeOutput').innerHTML = `<p class="fee-error">Please fill in all details (Student Count, School/Principal Name, Date).</p>`;
+                return;
+            }
+            
+            const annualFee = ANNUAL_FEES[plan];
+            const totalAnnualRevenue = annualFee * count;
+            
+            const totalMonthly = count * ANNUAL_FEES.monthly;
+            const totalQuarterly = count * ANNUAL_FEES.quarterly;
+            const totalAnnual = count * ANNUAL_FEES.annual;
+
+            const feeHTML = `
+                <p class="fee-detail">Annual fee details for ${count} students:</p>
+                <div class="fee-box">
+                    <span class="fee-plan">1. Monthly Payment Plan:</span> 
+                    <span class="fee-amount">${formatCurrency(totalMonthly)}</span> 
+                    <span class="fee-note">(₹1320/student)</span>
+                </div>
+                <div class="fee-box">
+                    <span class="fee-plan">2. Quarterly Payment Plan:</span> 
+                    <span class="fee-amount">${formatCurrency(totalQuarterly)}</span>
+                    <span class="fee-note">(₹1296/student)</span>
+                </div>
+                <div class="fee-box">
+                    <span class="fee-plan">3. Annual Upfront Plan (Best Value):</span> 
+                    <span class="fee-amount">${formatCurrency(totalAnnual)}</span>
+                    <span class="fee-note">(₹1250/student)</span>
+                </div>
+                <p class="fee-terms">All Fixed Perks are available <strong>Immediately</strong> on the Annual Upfront Plan.</p>
+            `;
+            document.getElementById('feeOutput').innerHTML = feeHTML;
+
+            // --- BENEFIT ALLOCATION (Logic Hidden) ---
+            const fixedRewardFundInitial = totalAnnualRevenue * PERCENTAGES.FIXED_REWARD;
+            const giftFundInitial = totalAnnualRevenue * PERCENTAGES.GIFT_FUND;
+            const bannerFund = totalAnnualRevenue * PERCENTAGES.BANNER_FUND_PERCENT;
+
+            const minScholarshipPool = count * SCHOLARSHIP_PER_STUDENT;
+            const teacherAwardCalculated = fixedRewardFundInitial * TEACHER_AWARD_PERCENT_OF_REWARD_FUND;
+            const teacherAwardActual = Math.min(teacherAwardCalculated, MAX_TEACHER_AWARD);
+
+            const remainingRewardFundForGiftPool = fixedRewardFundInitial - teacherAwardCalculated - minScholarshipPool;
+            let perStudentGiftValueActual = 0;
+            
+            if (remainingRewardFundForGiftPool > 0 && count > 0) {
+                const potentialPerStudentGiftValue = remainingRewardFundForGiftPool / count;
+                perStudentGiftValueActual = Math.min(potentialPerStudentGiftValue, MAX_PER_STUDENT_GIFT);
+            }
+
+            const giftFundActual = Math.min(giftFundInitial, MAX_EQUIPMENT_GIFT);
+            
+            // --- DISPLAY BENEFITS ---
+            document.getElementById('scholarshipPool').textContent = formatCurrency(minScholarshipPool);
+            
+            let teacherAwardText = formatCurrency(teacherAwardActual);
+            if (teacherAwardCalculated > MAX_TEACHER_AWARD) {
+                teacherAwardText += ` (Max Limit Hit)`;
+            }
+            document.getElementById('teacherAward').textContent = teacherAwardText;
+            
+            let perStudentGiftText = formatCurrency(perStudentGiftValueActual);
+            if (remainingRewardFundForGiftPool < 0) {
+                perStudentGiftText = `₹0 (Reward Pool Insufficient)`;
+            } else if (remainingRewardFundForGiftPool / count > MAX_PER_STUDENT_GIFT) {
+                perStudentGiftText += ` (Max Limit Hit)`;
+            }
+            document.getElementById('perStudentGift').textContent = perStudentGiftText;
+
+            document.getElementById('giftFundActual').textContent = formatCurrency(giftFundActual);
+            
+            document.getElementById('bannerOutput').innerHTML = getBannerBreakdown(bannerFund).html;
+            document.getElementById('equipmentOutput').innerHTML = displayEquipmentOptions(giftFundActual);
+            
+            const pitchBtn = document.getElementById('generatePitchBtn');
+            pitchBtn.disabled = false;
+            pitchBtn.textContent = "✨ Draft Message for Parents";
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,1613 @@
+/* ===== Google Font Import ===== */
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Roboto:wght@300;400;500&display=swap');
+
+/* ===== 
+   COLOR PALETTES (Transparency ke liye RGB versions add kiye gaye)
+===== */
+:root {
+    /* Default: Coastal Midnight */
+    --bg-darkest: #061222;
+    --bg-dark: #123249;
+    --bg-dark-rgb: 18, 50, 73; /* (RGB of --bg-dark) */
+    --primary: #2D5B75;
+    --accent: #447794;
+    --text-light: #FFFFFF;
+    --text-muted: #E9B48A;
+}
+body[data-theme="deep-rouge"] {
+    --bg-darkest: #040B15;
+    --bg-dark: #420001;
+    --bg-dark-rgb: 66, 0, 1;
+    --primary: #640000;
+    --accent: #B67E7D;
+    --text-light: #FFFFFF;
+    --text-muted: #B67E7D;
+}
+body[data-theme="warm-ember"] {
+    --bg-darkest: #2A1713;
+    --bg-dark: #5C352C;
+    --bg-dark-rgb: 92, 53, 44;
+    --primary: #956959;
+    --accent: #E9B48A;
+    --text-light: #FFFFFF;
+    --text-muted: #E9B48A;
+}
+/* ===== NAYI PALETTES ===== */
+
+body[data-theme="theme-gold"] {
+    --bg-darkest: #000; /* Video background */
+    --bg-dark: #1A1A1A;
+    --bg-dark-rgb: 26, 26, 26; /* (RGB of --bg-dark) */
+    --primary: #8C7853; /* Dark Bronze */
+    --accent: #E0B973;  /* Vintage Gold */
+    --text-light: #FFFFFF;
+    --text-muted: #E0B973; /* Vintage Gold */
+}
+
+body[data-theme="theme-teal"] {
+    --bg-darkest: #000; /* Video background */
+    --bg-dark: #0F1A24;
+    --bg-dark-rgb: 15, 26, 36; /* (RGB of --bg-dark) */
+    --primary: #008080; /* Deep Teal */
+    --accent: #40E0D0;  /* Bright Turquoise */
+    --text-light: #FFFFFF;
+    --text-muted: #40E0D0; /* Bright Turquoise */
+}
+
+body[data-theme="theme-platinum"] {
+    --bg-darkest: #000; /* Video background */
+    --bg-dark: #111111;
+    --bg-dark-rgb: 17, 17, 17; /* (RGB of --bg-dark) */
+    --primary: #808080; /* Medium Grey */
+    --accent: #C0C0C0;  /* Silver */
+    --text-light: #FFFFFF;
+    --text-muted: #C0C0C0; /* Silver */
+}
+/* ===== NAYA PW YELLOW PALETTE ===== */
+body[data-theme="pw-yellow"] {
+    --bg-darkest: #000; /* Video background */
+    --bg-dark: #101820; /* Bahut dark grey */
+    --bg-dark-rgb: 16, 24, 32; /* (RGB of --bg-dark) */
+    
+    /* PW Ke Rang */
+    --primary: #0B3768;  /* PW Blue (Buttons/Borders) */
+    --accent: #ffc900;   /* PW Yellow (Headings/Links) */
+    
+    --text-light: #FFFFFF;
+    --text-muted: #ffc900; /* PW Yellow (Muted text) */
+}
+
+/* ===== General Styling ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Roboto', sans-serif;
+    color: var(--text-light);
+    background-color: #000; /* Fallback agar video na chale */
+}
+h1, h2, h3, .hero-content h2 {
+    font-family: 'EB Garamond', serif;
+    color: var(--text-muted);
+}
+a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+/* ===== NAYA VIDEO BACKGROUND STYLE ===== */
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+}
+.video-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Video ko poori screen par stretch karega */
+}
+
+/* ===== NAYA CONTENT WRAPPER STYLE ===== */
+.content-wrapper {
+    position: relative;
+    z-index: 1;
+    /* Backgrounds ab yahan nahi, specific elements par honge */
+}
+
+/* ===== Theme Switcher (Vertical Layout) ===== */
+.theme-switcher {
+    position: fixed;
+    top: 50%; /* Screen ke beech mein (vertical) */
+    transform: translateY(-50%); /* Isko apni height ke hisab se perfectly center karega */
+    right: 15px; /* Right side se 15px door */
+    z-index: 1001;
+    
+    display: flex;
+    flex-direction: column; /* YEH LINE ISKO VERTICAL BANATI HAI */
+    
+    gap: 10px; /* Dots ke beech ki vertical space */
+    background: rgba(0,0,0,0.3);
+    padding: 10px 8px; /* Upar-niche 10px, daayein-baayein 8px padding */
+    border-radius: 25px; /* Lambi pill shape ke liye */
+    backdrop-filter: blur(5px); /* Optional: Background ko blur karega */
+}
+.theme-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid white;
+}
+#theme-rouge { background-color: #B67E7D; }
+#theme-ember { background-color: #E9B48A; }
+#theme-midnight { background-color: #447794; }
+#theme-gold { background-color: #E0B973; }
+#theme-teal { background-color: #40E0D0; }
+#theme-platinum { background-color: #C0C0C0; }
+#theme-pw-yellow { background-color: #ffc900; border: 2px solid #0B3768; }
+
+/* ===== Header & Navbar ===== */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    /* BACKGROUND BADLA GAYA (Semi-transparent) */
+    background-color: rgba(var(--bg-dark-rgb), 0.85);
+    border-bottom: 2px solid var(--primary);
+    position: relative;
+    backdrop-filter: blur(5px); /* Optional: Background ko blur karega */
+}
+.logo-container { display: flex; align-items: center; }
+.logo { height: 40px; margin-right: 10px; }
+header h1 { font-size: 1.8rem; color: var(--text-light); }
+.nav-menu { display: flex; align-items: center; }
+nav ul { list-style: none; display: flex; }
+nav ul li { position: relative; margin: 0 15px; }
+nav ul li a { color: var(--text-light); font-weight: 500; font-size: 1rem; padding-bottom: 5px; }
+nav ul li a:hover { color: var(--accent); border-bottom: 2px solid var(--accent); }
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    /* BACKGROUND BADLA GAYA */
+    background-color: rgba(var(--bg-dark-rgb), 0.95);
+    border: 1px solid var(--primary);
+    border-radius: 5px;
+    padding: 10px 0;
+    z-index: 1000;
+    width: 250px;
+}
+.dropdown:hover .dropdown-menu { display: block; }
+.dropdown-menu li { margin: 0; width: 100%; }
+.dropdown-menu li a { display: block; padding: 10px 15px; color: var(--text-light); }
+.dropdown-menu li a:hover { background-color: var(--primary); color: var(--text-light); border-bottom: none; }
+.login-dropdown { position: relative; margin-left: 15px; }
+.login-btn {
+    background-color: var(--accent);
+    color: var(--bg-darkest);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+}
+.login-dropdown .dropdown-menu { left: auto; right: 0; width: 200px; }
+.login-dropdown:hover .dropdown-menu { display: block; }
+.nav-toggle { display: none; background: transparent; border: none; cursor: pointer; z-index: 1001; }
+.hamburger { display: block; width: 25px; height: 3px; background: var(--text-light); position: relative; transition: transform 0.3s; }
+.hamburger::before, .hamburger::after { content: ''; position: absolute; width: 25px; height: 3px; background: var(--text-light); left: 0; transition: transform 0.3s, top 0.3s, bottom 0.3s; }
+.hamburger::before { top: -8px; }
+.hamburger::after { bottom: -8px; }
+.nav-menu.active + .nav-toggle .hamburger { transform: rotate(45deg); }
+.nav-menu.active + .nav-toggle .hamburger::before { top: 0; transform: rotate(90deg); }
+.nav-menu.active + .nav-toggle .hamburger::after { bottom: 0; transform: rotate(90deg); }
+
+/* ===== Hero Section ===== */
+.hero {
+    /* height: 70vh; */ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(var(--bg-dark-rgb), 0.5));
+    padding: 100px 5%; 
+}
+.hero-content { display: flex; flex-direction: column; align-items: center; }
+.hero-logo { height: 200px; margin-bottom: 20px; }
+.hero-content h2 { font-size: 4rem; color: var(--accent); margin-bottom: 15px; }
+.hero-content p { font-size: 1.2rem; color: var(--text-light); margin-bottom: 30px; }
+.btn-primary { background-color: var(--primary); color: var(--bg-darkest); padding: 12px 25px; border-radius: 5px; font-weight: 700; font-size: 1rem; transition: background-color 0.3s; }
+.btn-primary:hover { background-color: var(--accent); }
+
+/* ===== NAYA "ABOUT US" SUMMARY STYLE ===== */
+.summary-section {
+    padding: 60px 5%;
+    background-color: rgba(var(--bg-dark-rgb), 0.7);
+    text-align: center;
+    max-width: 900px;
+    margin: 40px auto;
+    border-radius: 10px;
+    border-top: 3px solid var(--primary);
+    border-bottom: 3px solid var(--primary);
+}
+.summary-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+.summary-content p {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* ===== INFINITE CAROUSEL STYLE ===== */
+.carousel-container {
+    max-width: 1000px;
+    position: relative;
+    margin: 20px auto;
+    overflow: hidden;
+    border: 4px solid var(--primary);
+    border-radius: 10px;
+    /* BACKGROUND BADLA GAYA */
+    background-color: rgba(var(--bg-dark-rgb), 0.7);
+}
+.carousel-track {
+    display: flex;
+    /* Transition JS se handle hoga */
+}
+.carousel-slide {
+    width: 33.333%; /* 3 slides ek baar mein */
+    padding: 0 5px;
+    box-sizing: border-box;
+    flex-shrink: 0; /* Slides ko sikudne se rokega */
+}
+.carousel-slide img {
+    width: 100%;
+    vertical-align: middle;
+    border-radius: 5px;
+}
+/* Buttons (wahi hain) */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    transition: 0.3s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: rgba(0,0,0,0.4);
+    z-index: 10;
+}
+.next { right: 0; border-radius: 3px 0 0 3px; }
+.prev:hover, .next:hover { background-color: var(--primary); }
+
+/* ===== TPC Promo Link ===== */
+.tpc-promo {
+    padding: 20px;
+    /* BACKGROUND BADLA GAYA */
+    background-color: rgba(var(--bg-dark-rgb), 0.8);
+    text-align: center;
+    margin: 0 5%; /* Thoda side margin */
+    border-radius: 10px;
+}
+.tpc-promo a { display: block; padding: 20px; border: 2px dashed var(--accent); border-radius: 10px; transition: all 0.3s; }
+.tpc-promo a:hover { background-color: var(--primary); border-style: solid; }
+.tpc-promo strong { font-family: 'EB Garamond', serif; font-size: 2rem; color: var(--text-muted); display: block; }
+.tpc-promo span { font-size: 1rem; color: var(--text-light); }
+
+/* ===== Footer (Same as before) ===== */
+footer {
+    /* BACKGROUND BADLA GAYA */
+    background-color: rgba(var(--bg-dark-rgb), 0.9);
+    color: var(--text-light);
+    padding-top: 40px;
+    border-top: 3px solid var(--primary);
+    margin-top: 20px;
+}
+.footer-content { display: flex; justify-content: space-around; flex-wrap: wrap; padding: 0 5% 20px 5%; }
+.footer-col { width: 300px; margin-bottom: 20px; }
+.footer-col h3 { font-size: 1.5rem; margin-bottom: 15px; color: var(--text-muted); }
+.footer-col p, .footer-col a { color: var(--text-light); margin-bottom: 8px; display: block; }
+.footer-col a:hover { color: var(--accent); }
+.footer-bottom { text-align: center; padding: 15px; border-top: 1px solid var(--primary); }
+
+/* ===== NAYA COLLABORATORS SLIDER STYLE ===== */
+.collaborators-section {
+    padding: 50px 5%;
+    text-align: center;
+}
+.collaborators-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+
+.collaborator-carousel-container {
+    max-width: 1200px; /* Bada slider, NTA jaisa */
+    position: relative;
+    margin: 20px auto;
+    overflow: hidden;
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+    background-color: rgba(var(--bg-dark-rgb), 0.7);
+    padding: 20px 0;
+}
+.collaborator-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+.collaborator-slide {
+    width: 16.666%; /* Ek baar mein 6 dikhenge */
+    padding: 0 10px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    text-align: center;
+}
+.collaborator-slide img {
+    max-width: 100%;
+    height: 100px; /* Sabhi logo ki height fix ki */
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+.collaborator-slide h3 {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    font-family: 'Roboto', sans-serif;
+}
+.collaborator-slide p {
+    font-size: 0.9rem;
+    color: var(--accent);
+}
+
+/* Naye slider ke buttons ko pehle wale se alag style karna (agar zaroori ho) */
+.collaborator-carousel-container .prev,
+.collaborator-carousel-container .next {
+    top: 50%;
+    display: none;
+}
+/* ===== NAYA "ABOUT US" SUMMARY STYLE ===== */
+.summary-section {
+    padding: 60px 5%;
+    background-color: rgba(var(--bg-dark-rgb), 0.7);
+    text-align: center;
+    max-width: 900px;
+    margin: 40px auto;
+    border-radius: 10px;
+    border-top: 3px solid var(--primary);
+    border-bottom: 3px solid var(--primary);
+}
+.summary-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+.summary-content p {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* ===== NAYA "FEATURES" SECTION STYLE ===== */
+.features-section {
+    padding: 50px 5%;
+    text-align: center;
+}
+.features-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.feature-box {
+    background-color: rgba(var(--bg-dark-rgb), 0.8);
+    padding: 30px 20px;
+    border-radius: 10px;
+    border: 2px solid var(--primary);
+    transition: all 0.3s ease;
+}
+.feature-box i {
+    font-size: 3rem;
+    color: var(--accent);
+    margin-bottom: 20px;
+}
+.feature-box h3 {
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+}
+.feature-box p {
+    color: var(--text-light);
+    line-height: 1.5;
+}
+.feature-box:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent);
+}
+.study-resources-section h2 {
+    /* Yeh sirf "Free Study Resources" section ki headings ka size badlega */
+    font-size: 3rem; /* Size 1.5rem se badhkar 1.8rem ho jayega */
+}
+.study-resources-section {
+    padding: 50px 5%;
+    /* Thoda alag dikhane ke liye halka background */
+    background-color: rgba(var(--bg-dark-rgb), 0.5); 
+    margin-bottom: 40px; /* <--- YEH LINE ADD KAREIN */
+}
+.study-resources-section h2 {
+    font-size: 3rem;
+    margin-bottom: 50px;
+}
+
+/* ===== NAYA "STATS COUNTER" STYLE ===== */
+.stats-counter-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 40px 5%;
+    background-color: rgba(var(--bg-dark-rgb), 0.8);
+    margin: 40px 0;
+    border-top: 2px solid var(--primary);
+    border-bottom: 2px solid var(--primary);
+}
+.stat-box {
+    text-align: center;
+    padding: 10px 20px;
+}
+.stat-box .stat-number {
+    font-family: 'EB Garamond', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+.stat-box p {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    
+}
+
+/* ===== NAYA "TOPPERS" SECTION STYLE ===== */
+.toppers-section {
+    padding: 50px 5%;
+    text-align: center;
+}
+.toppers-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 5px;
+}
+.section-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+.topper-carousel-container {
+    max-width: 1200px;
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.topper-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+.topper-slide {
+    width: 20%; /* Ek baar mein 5 dikhenge */
+    padding: 0 10px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    text-align: center;
+}
+.topper-slide img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Gol photo */
+    border: 4px solid var(--primary);
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+.topper-slide h3 {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    font-family: 'Roboto', sans-serif;
+}
+.topper-slide span {
+    font-size: 1rem;
+    color: var(--accent);
+}
+/* Topper slider ke buttons */
+.topper-carousel-container .prev,
+.topper-carousel-container .next {
+    top: 40%;
+    display: none;
+}
+/* ===== Latest News Section ===== */
+.latest-news { 
+    padding: 50px 5%; 
+    text-align: center; /* Heading aur container ko center karta hai */
+}
+.latest-news h2 { 
+    font-size: 2.5rem; 
+    margin-bottom: 30px; 
+}
+.news-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    max-width: 900px;
+    margin: 0 auto 30px auto; /* Container ko horizontally center karta hai */
+    /* text-align: left; <--- YEH LINE HATA DI GAYI */
+}
+.news-item {
+    /* BACKGROUND BADLA GAYA */
+    background-color: rgba(var(--bg-dark-rgb), 0.8);
+    padding: 15px;
+    border-radius: 5px;
+    border-left: 5px solid var(--primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left; /* Content ko wapas left-align karta hai taaki padhne mein aasani ho */
+    margin: 0 auto; /* Yeh news items ko center karta hai */
+    width: 90%; /* Width kam ki taaki center mein achha dikhe */
+}
+.news-item p { margin-right: 15px; }
+.news-item a { font-weight: 700; white-space: nowrap; }
+.btn-secondary { /* ... (baaki code) ... */ }
+/* ===== NAYA "TESTIMONIALS" SECTION STYLE ===== */
+.testimonials-section {
+    padding: 50px 5%;
+    text-align: center;
+    background-color: rgba(var(--bg-dark-rgb), 0.7);
+    border-top: 2px solid var(--primary);
+    border-bottom: 2px solid var(--primary);
+}
+.testimonials-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+.testimonial-container {
+    max-width: 900px; /* Slider ko chhota rakha */
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.testimonial-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+.testimonial-slide {
+    width: 100%; /* Ek baar mein 1 */
+    padding: 0 40px; /* Side mein padding */
+    box-sizing: border-box;
+    flex-shrink: 0;
+    text-align: center;
+}
+.testimonial-slide q { /* Quote ke liye */
+    font-size: 1.3rem;
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    color: var(--text-light);
+    line-height: 1.6;
+    display: block;
+    margin-bottom: 20px;
+}
+.testimonial-slide .author-name {
+    font-size: 1.1rem;
+    color: var(--accent);
+    font-weight: 700;
+}
+.testimonial-slide .author-title {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+/* Testimonial slider ke buttons */
+.testimonial-container .prev,
+.testimonial-container .next {
+    top: 40%;
+    display: none;
+}
+/* ===== NAYA "FOUNDER'S MESSAGE" STYLE ===== */
+.founder-message-section {
+    padding: 50px 5%;
+    text-align: center;
+}
+.founder-message-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+.founder-content-box {
+    display: flex;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    background-color: rgba(var(--bg-dark-rgb), 0.7);
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+    overflow: hidden; /* Taaki image border-radius ko follow kare */
+    text-align: left;
+}
+
+.founder-image-col {
+    flex-basis: 35%; /* Image ke liye 35% jagah */
+    flex-shrink: 0;
+}
+.founder-image-col img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    vertical-align: middle; /* Chhote gaps hatane ke liye */
+}
+
+.founder-text-col {
+    flex-basis: 65%; /* Text ke liye 65% jagah */
+    padding: 40px;
+}
+.founder-text-col q { /* Founder ka message */
+    font-size: 1.3rem;
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    color: var(--text-light);
+    line-height: 1.6;
+    display: block;
+    margin-bottom: 25px;
+}
+.founder-text-col h3 { /* Founder ka naam */
+    font-size: 1.5rem;
+    color: var(--accent);
+    font-weight: 700;
+}
+.founder-text-col p { /* Founder ka title */
+    font-size: 1rem;
+    color: var(--text-light);
+}
+
+/* ===== NAYA COLLABORATORS SLIDER STYLE ===== */
+.collaborators-section {
+    padding: 50px 5%;
+    text-align: center;
+}
+.collaborators-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+
+.collaborator-carousel-container {
+    max-width: 1200px; /* Bada slider, NTA jaisa */
+    position: relative;
+    margin: 20px auto;
+    overflow: hidden;
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+    background-color: rgba(var(--bg-dark-rgb), 0.7);
+    padding: 20px 0;
+}
+.collaborator-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+.collaborator-slide {
+    width: 16.666%; /* Ek baar mein 6 dikhenge */
+    padding: 0 10px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    text-align: center;
+}
+.collaborator-slide img {
+    max-width: 100%;
+    height: 100px; /* Sabhi logo ki height fix ki */
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+.collaborator-slide h3 {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    font-family: 'Roboto', sans-serif;
+}
+.collaborator-slide p {
+    font-size: 0.9rem;
+    color: var(--accent);
+}
+
+/* Naye slider ke buttons ko pehle wale se alag style karna (agar zaroori ho) */
+.collaborator-carousel-container .prev,
+.collaborator-carousel-container .next {
+    top: 50%;
+    display: none;
+}
+
+/* ===== 
+   NAYA PAGE: ABOUT.HTML STYLES
+===== */
+
+/* Page ka Hero Title */
+.page-hero {
+    text-align: center;
+    padding: 60px 5%;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(var(--bg-dark-rgb), 0.7));
+    border-bottom: 3px solid var(--primary);
+}
+.page-hero h1 {
+    font-size: 3rem;
+    color: var(--accent);
+}
+.page-hero p {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    max-width: 600px;
+    margin: 10px auto 0 auto;
+}
+
+/* Page ka Mukhya Container */
+.about-page-container {
+    display: flex;
+    max-width: 1300px;
+    margin: 40px auto;
+    padding: 0 5%;
+    gap: 30px;
+}
+
+/* Side Navigation Menu */
+.about-nav {
+    flex-basis: 20%; /* Chaurai */
+    align-self: flex-start; /* Upar se shuru ho */
+    position: sticky; /* Scroll ke saath stick ho */
+    top: 100px; /* Header ke 100px niche se */
+    
+    background-color: rgba(var(--bg-dark-rgb), 0.8);
+    border: 1px solid var(--primary);
+    border-radius: 8px;
+    overflow: hidden;
+}
+.about-nav a {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: var(--text-light);
+    font-size: 1.1rem;
+    border-bottom: 1px solid var(--primary);
+    transition: all 0.2s ease;
+}
+.about-nav a:last-child {
+    border-bottom: none;
+}
+.about-nav a:hover,
+.about-nav a.active {
+    background-color: var(--primary);
+    color: var(--text-light);
+    padding-left: 25px; /* Thoda right move kare */
+}
+
+/* Content Area */
+.about-content {
+    flex-basis: 80%; /* Bachi hui jagah */
+}
+.content-section {
+    background-color: rgba(var(--bg-dark-rgb), 0.8);
+    border: 1px solid var(--primary);
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 30px; /* Sections ke beech gap */
+}
+.content-section h2 {
+    font-size: 2.2rem;
+    color: var(--accent);
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 10px;
+}
+.content-section p {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+.content-section ul {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-left: 25px;
+}
+.content-logo {
+    float: right;
+    width: 100px;
+    margin-left: 20px;
+}
+/* ===== NEW: FUNCTION.HTML PAGE STYLES ===== */
+.function-grid {
+    display: grid;
+    /* This will create 2 columns */
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.function-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 25px;
+    background-color: rgba(var(--bg-dark-rgb), 0.5);
+    border: 1px solid var(--primary);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.function-box:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+}
+
+.function-box i {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 15px;
+}
+
+.function-box h3 {
+    font-size: 1.3rem;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.function-box p {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+/* ===== NEW: GOVERNING-BODY.HTML PAGE STYLES ===== */
+.team-grid {
+    display: grid;
+    /* 3 columns */
+    grid-template-columns: 1fr 1fr 1fr; 
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.team-member-box {
+    text-align: center;
+    padding: 25px;
+    background-color: rgba(var(--bg-dark-rgb), 0.5);
+    border: 1px solid var(--primary);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.team-member-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Gol photo */
+    border: 3px solid var(--accent);
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.team-member-box h3 {
+    font-size: 1.4rem;
+    color: var(--text-muted);
+    font-family: 'Roboto', sans-serif;
+}
+
+.team-member-title {
+    font-size: 1rem;
+    color: var(--accent);
+    font-weight: 700;
+    margin-top: -5px;
+    margin-bottom: 10px;
+}
+
+.team-member-bio {
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+/* ===== NEW: PRICING-GRID FOR EXAMS.HTML ===== */
+.section-subtitle {
+    font-size: 1.5rem;
+    font-family: 'EB Garamond', serif;
+    color: var(--text-muted);
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.pricing-grid {
+    display: grid;
+    /* Creates 3 columns */
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.pricing-card {
+    background-color: rgba(var(--bg-dark-rgb), 0.5);
+    border: 1px solid var(--primary);
+    border-radius: 8px;
+    padding: 25px;
+    transition: all 0.3s ease;
+}
+
+.pricing-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+}
+
+.pricing-card.premium {
+    border: 2px solid var(--accent); /* Highlight premium plan */
+}
+
+.plan-title {
+    font-size: 1.8rem;
+    color: var(--accent);
+    font-family: 'EB Garamond', serif;
+    margin-bottom: 5px;
+}
+
+.plan-price {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-light);
+}
+.plan-price span {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #ccc;
+}
+
+.plan-audience {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.plan-features {
+    list-style: none;
+    padding: 0;
+}
+.plan-features li {
+    color: var(--text-light);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 12px;
+    padding-left: 25px;
+    position: relative;
+}
+/* Custom checkmark bullet */
+.plan-features li::before {
+    content: '✓'; /* Checkmark */
+    color: var(--accent);
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 700;
+}
+
+.coming-soon {
+    padding: 20px;
+    background-color: rgba(var(--bg-dark-rgb), 0.8);
+    border-radius: 5px;
+    text-align: center;
+}
+.coming-soon p {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+.coming-soon strong {
+    color: var(--accent);
+    font-size: 1.1rem;
+}
+/* ===== NEW: SCHOOLS.HTML CALCULATOR STYLES ===== */
+.fee-result {
+    border: 2px solid var(--primary);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    background-color: rgba(var(--bg-dark-rgb), 0.7);
+}
+.fee-result h3 {
+    color: var(--accent);
+    font-size: 1.5rem;
+    font-family: 'EB Garamond', serif;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--primary);
+    background-color: rgba(var(--bg-dark-rgb), 0.9);
+    color: var(--text-light);
+    border-radius: 5px;
+    font-size: 1rem;
+}
+.form-input:focus {
+    border-color: var(--accent);
+    outline: none;
+}
+.content-section label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: var(--text-light);
+}
+.btn-calculate {
+    background-color: var(--accent);
+    color: var(--bg-darkest);
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+}
+.btn-calculate:hover {
+    background-color: var(--text-light);
+}
+
+/* Calculator Output */
+#feeOutput p { text-align: center; }
+.fee-detail { font-size: 1rem; margin-bottom: 10px; }
+.fee-box {
+    padding: 10px 0;
+    border-bottom: 1px dotted var(--primary);
+}
+.fee-box:last-of-type { border-bottom: none; }
+.fee-plan { font-weight: 700; color: var(--text-light); }
+.fee-amount { float: right; font-weight: 700; color: var(--accent); }
+.fee-note { float: right; font-size: 0.9rem; color: #ccc; margin-right: 10px; }
+.fee-terms { margin-top: 15px; font-weight: 700; color: var(--accent); }
+.fee-error { color: #f87171; font-weight: 700; }
+
+/* Detail Items */
+.section-title {
+    font-size: 1.5rem;
+    font-family: 'EB Garamond', serif;
+    color: var(--text-muted);
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 5px;
+}
+.section-title.text-purple { color: #c084fc; } /* For AI */
+
+.detail-item {
+    background-color: rgba(var(--bg-dark-rgb), 0.5);
+    border-left: 5px solid var(--primary);
+    padding: 15px;
+    margin-bottom: 12px;
+    border-radius: 0 8px 8px 0;
+}
+.detail-item strong {
+    color: var(--text-muted);
+    font-weight: 700;
+}
+.detail-item p.text-sm { font-size: 0.9rem; }
+.detail-item p.text-red-600 { color: #f87171; }
+
+/* Banner/Equipment Lists */
+.banner-options, .equipment-list-container {
+    margin-top: 15px;
+    border: 1px solid var(--primary);
+    padding: 10px;
+    border-radius: 5px;
+    max-height: 250px;
+    overflow-y: auto;
+    background-color: rgba(var(--bg-dark-rgb), 0.7);
+}
+.banner-option, .equipment-list li {
+    padding: 5px 0;
+    border-bottom: 1px dotted var(--primary);
+}
+.banner-option:last-child, .equipment-list li:last-child { border-bottom: none; }
+.cbsnu-boost { color: var(--accent); font-weight: bold; }
+.banner-total { font-weight: 700; }
+.banner-subtitle { font-weight: 700; margin-top: 10px; }
+.banner-leftover { float: right; color: #ccc; font-size: 0.9rem; }
+.equipment-list { list-style-type: none; padding-left: 0; }
+.equipment-item-main { font-weight: 700; color: var(--accent); }
+.equipment-note { font-size: 0.9rem; }
+
+/* AI Feature Styles */
+.detail-item-ai { border-left-color: #a855f7; }
+.btn-ai { background-color: #9333ea; }
+.btn-ai:hover { background-color: #a855f7; }
+.btn-ai:disabled { background-color: #585061; cursor: not-allowed; }
+.ai-output {
+    margin-top: 15px;
+    padding: 15px;
+    border: 1px dashed var(--primary);
+    border-radius: 5px;
+    background-color: rgba(var(--bg-dark-rgb), 0.7);
+    min-height: 50px;
+}
+.ai-output p { margin-bottom: 0; }
+.text-red-500 { color: #f87171; }
+.btn-print { margin-top: 15px; background-color: var(--primary); 
+}
+/* ===== NEW: DOWNLOADS.HTML PAGE STYLES ===== */
+.service-button-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 columns */
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.service-button {
+    display: block;
+    text-decoration: none;
+    padding: 30px;
+    background-color: rgba(var(--bg-dark-rgb), 0.5);
+    border: 1px solid var(--primary);
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+.service-button:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+    background-color: rgba(var(--bg-dark-rgb), 0.8);
+}
+.service-button i {
+    font-size: 3rem;
+    color: var(--accent);
+    margin-bottom: 15px;
+}
+.service-button h3 {
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 10px;
+}
+.service-button p {
+    font-size: 1rem;
+    color: var(--text-light);
+    line-height: 1.5;
+}
+
+/* Download List Styles */
+.download-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 25px;
+}
+.download-list li {
+    margin-bottom: 10px;
+}
+.download-list a {
+    display: block;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-light);
+    padding: 15px;
+    background-color: rgba(var(--bg-dark-rgb), 0.5);
+    border: 1px solid var(--primary);
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+.download-list a:hover {
+    background-color: var(--primary);
+    border-color: var(--accent);
+    padding-left: 25px;
+}
+.download-list a i {
+    margin-right: 15px;
+    color: var(--accent);
+    width: 20px; /* Align icons */
+}
+/* ===== NEW: LOGIN PAGE STYLES (Admin, School, Institute) ===== */
+.login-container {
+    padding: 100px 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.login-form {
+    max-width: 450px;
+    width: 100%;
+    padding: 40px;
+    background-color: rgba(var(--bg-dark-rgb), 0.85);
+    border: 1px solid var(--primary);
+    border-radius: 10px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+.login-logo {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 15px auto;
+}
+
+.login-form h2 {
+    font-size: 2.2rem;
+    color: var(--accent);
+    margin-bottom: 10px;
+}
+
+.login-form p {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-bottom: 25px;
+}
+
+.login-input-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.login-input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.login-footer-text {
+    font-size: 0.9rem !important;
+    color: #ccc !important;
+    margin-top: 20px;
+    margin-bottom: 0 !important;
+}
+
+/* ===== NEW: VIDEO-ACCURATE SLIDING LOGIN FORM STYLES (Student Page) ===== */
+
+/* This hides the header/footer and centers the form */
+.login-page-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px 0;
+}
+.login-page-body .content-wrapper { display: contents; }
+.login-page-body header,
+.login-page-body footer { display: none; }
+.login-page-body .page-main-content { padding: 0; }
+
+/* Main Container */
+.slide-form-container {
+    position: relative;
+    width: 768px;
+    max-width: 100%;
+    min-height: 520px;
+    background-color: rgba(var(--bg-dark-rgb), 0.8);
+    border-radius: 10px;
+    border: 1px solid var(--primary);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+/* Form Panels (Login & Register) */
+.form-panel {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 40px;
+    transition: all 0.6s ease-in-out;
+}
+/* Login and Register initial placement */
+.form-login-panel {
+    left: 0;
+    z-index: 2; /* On top by default */
+}
+.form-register-panel {
+    left: 0;
+    z-index: 1;
+    opacity: 0; /* Hidden by default */
+}
+
+.form-panel form {
+    width: 100%;
+    text-align: center;
+}
+.form-panel h1 {
+    font-size: 2.2rem;
+    color: var(--accent);
+    margin-bottom: 10px;
+}
+.form-panel p {
+    font-size: 1rem;
+    color: var(--text-light);
+    margin-bottom: 20px;
+}
+.forgot-pass {
+    font-size: 0.9rem;
+    color: #ccc;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+.forgot-pass:hover {
+    color: var(--accent);
+}
+
+/* Floating Input Fields */
+.floating-input {
+    position: relative;
+    margin-bottom: 25px;
+}
+.floating-input input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 1rem;
+    color: var(--text-light);
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid var(--primary);
+    outline: none;
+}
+.floating-input label {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    font-size: 1rem;
+    color: #ccc;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+/* The "Floating" Animation */
+.floating-input input:focus + label,
+.floating-input input:valid + label {
+    top: -15px;
+    left: 0;
+    font-size: 0.8rem;
+    color: var(--accent);
+}
+/* Input Underline Animation */
+.floating-input input:focus {
+    border-bottom-color: var(--accent);
+}
+
+/* Sliding Button */
+.btn-slide {
+    background-color: var(--accent);
+    color: var(--bg-darkest);
+    padding: 12px 45px;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    border: 1px solid var(--accent);
+    cursor: pointer;
+    margin-top: 10px;
+}
+.btn-slide:hover {
+    background-color: transparent;
+    color: var(--accent);
+}
+.btn-slide.ghost {
+    background-color: transparent;
+    border-color: var(--text-light);
+    color: var(--text-light);
+}
+.btn-slide.ghost:hover {
+    background-color: var(--text-light);
+    color: var(--bg-darkest);
+}
+
+
+/* Overlay Container (The part that slides) */
+.overlay-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 100;
+    transition: all 0.6s ease-in-out;
+}
+.overlay-panel-wrapper {
+    position: relative;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    color: var(--text-light);
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+.overlay-panel {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 40px;
+}
+.overlay-panel p {
+    font-size: 1.1rem;
+    margin: 20px 0 30px 0;
+}
+.login-logo-overlay {
+    width: 80px;
+    margin-bottom: 10px;
+}
+.overlay-right-panel {
+    right: 0;
+    transform: translateX(0);
+}
+.overlay-left-panel {
+    transform: translateX(-20%);
+}
+
+/* ----- The SLIDE Animation Logic ----- */
+
+/* When "Sign Up" is clicked (slide-active class is added) */
+.slide-form-container.slide-active .form-register-panel {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+}
+.slide-form-container.slide-active .form-login-panel {
+    transform: translateX(100%);
+    opacity: 0;
+    z-index: 1;
+}
+
+.slide-form-container.slide-active .overlay-container {
+    transform: translateX(-100%);
+}
+.center-text {
+    text-align: center;
+}
+.slide-form-container.slide-active .overlay-panel-wrapper {
+    transform: translateX(50%);
+}
+.slide-form-container.slide-active .overlay-left-panel {
+    transform: translateX(0);
+}
+.slide-form-container.slide-active .overlay-right-panel {
+    transform: translateX(20%);
+}
+
+/* ===== RESPONSIVE (MOBILE-FRIENDLY) ===== */
+@media (max-width: 900px) {
+    header { flex-wrap: wrap; justify-content: space-between; }
+    .nav-toggle { display: block; }
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: rgba(var(--bg-dark-rgb), 0.98);
+        position: absolute;
+        top: 73px;
+        left: 0;
+        z-index: 999;
+        padding: 10px 0;
+    }
+    .nav-menu.active { display: flex; }
+    nav ul { flex-direction: column; width: 100%; text-align: center; }
+    nav ul li { margin: 10px 0; }
+    .dropdown-menu { position: static; display: none; width: 100%; background-color: var(--primary); border: none; }
+    .dropdown:hover .dropdown-menu { display: none; }
+    .dropdown.active .dropdown-menu { display: block; }
+    .login-dropdown { width: 100%; margin: 10px 0; text-align: center; }
+    .login-dropdown .login-btn { width: 90%; }
+    .login-dropdown .dropdown-menu { position: static; width: 100%; background-color: var(--primary); }
+    .hero { height: 60vh; }
+    .hero-content h2 { font-size: 2.2rem; }
+    .hero-logo { height: 60px; }
+    .news-item { flex-direction: column; align-items: flex-start; }
+    .news-item a { margin-top: 10px; }
+    
+    /* Mobile par 1 slide dikhegi */
+    .carousel-slide {
+        width: 100%;
+    }
+    
+    /* About Page Responsive */
+    .about-page-container {
+        flex-direction: column; /* Upar-niche stack karein */
+    }
+    .about-nav {
+        position: static; /* Stick na kare */
+        flex-basis: auto;
+        width: 100%;
+    }
+    .about-content {
+        flex-basis: auto;
+        width: 100%;
+    }
+    .content-logo {
+        float: none;
+        display: block;
+        margin: 0 auto 20px auto;
+    }
+    /* Functions Page Responsive */
+    .function-grid {
+        /* On mobile, stack to 1 column */
+        grid-template-columns: 1fr;
+    }
+    /* Governing Body Page Responsive */
+    .team-grid {
+        /* On mobile, stack to 1 column */
+        grid-template-columns: 1fr;
+    }
+    /* Pricing Grid Responsive */
+    .pricing-grid {
+        /* On mobile, stack to 1 column */
+        grid-template-columns: 1fr;
+    }
+    /* Downloads Page Responsive */
+    .service-button-grid {
+        /* On mobile, stack to 1 column */
+        grid-template-columns: 1fr;
+    }
+    
+    /* Sliding Login Form Responsive */
+    .login-page-body .slide-form-container {
+        width: 90%;
+        min-height: 520px;
+    }
+    .form-panel {
+        padding: 0 20px;
+    }
+    .overlay-container {
+        display: none; /* Hide overlay on mobile */
+    }
+    /* Mobile slide logic */
+    .form-login-panel {
+        width: 100%;
+        opacity: 1;
+        z-index: 2;
+        transform: translateX(0);
+    }
+    .form-register-panel {
+        width: 100%;
+        opacity: 0;
+        z-index: 1;
+        transform: translateX(0);
+    }
+    .slide-form-container.slide-active .form-login-panel {
+        z-index: 1;
+        opacity: 0;
+    }
+    .slide-form-container.slide-active .form-register-panel {
+        z-index: 2;
+        opacity: 1;
+    }
+
+}

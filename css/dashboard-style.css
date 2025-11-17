@@ -1,0 +1,288 @@
+/* Custom CSS for a clean, secure Admin Dashboard - Using CBSN-U Dark Theme */
+:root {
+    --primary-color: #040B15; /* Very Dark Black/Blue (For Header/Footer BG) */
+    --secondary-color: #1A1A1A; /* Dark Grey (For Main BG) */
+    --tertiary-color: #420001; /* Dark Red/Maroon (For Sidebar/Borders) */
+    --accent-color: #E0B973; /* Regal Gold (For Headings/Buttons) */
+    --light-text: #f8f9fa; /* Off-White (For Text) */
+    --dark-text: #111111; /* Very Dark Text for buttons */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    line-height: 1.6;
+    background-color: var(--secondary-color);
+    color: var(--light-text);
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 2rem;
+}
+
+/* Navbar */
+.navbar {
+    background: var(--primary-color);
+    color: var(--light-text);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.logo-container-dash {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* FIX: Navbar mein logo ka size */
+.dash-logo {
+    width: 40px; 
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-color);
+}
+
+.navbar .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--light-text); /* FIX: Navbar text color */
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+}
+
+.navbar ul li a {
+    color: var(--light-text);
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+}
+
+.navbar ul li a:hover {
+    background-color: var(--tertiary-color);
+    color: var(--accent-color);
+}
+
+/* Dashboard Header */
+.dashboard-header {
+    background: var(--primary-color);
+    color: var(--light-text);
+    padding: 4rem 0;
+    text-align: center;
+    border-bottom: 2px solid var(--tertiary-color);
+}
+.dashboard-header h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--accent-color); /* Gold Heading */
+    font-family: 'EB Garamond', serif;
+}
+.dashboard-header p {
+    color: #ccc;
+}
+
+/* Dashboard Layout */
+.dashboard-content {
+    padding: 3rem 0;
+}
+.dashboard-grid-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+}
+
+.dashboard-sidebar {
+    background: var(--tertiary-color); /* Dark Red Sidebar */
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.dashboard-sidebar h3 {
+    margin-bottom: 1.5rem;
+    color: var(--accent-color); /* Gold Heading */
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 10px;
+}
+
+.dashboard-sidebar ul {
+    list-style: none;
+}
+
+.dashboard-sidebar ul li {
+    padding: 0.7rem 0;
+}
+
+.dashboard-sidebar ul li a {
+    color: var(--light-text);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 500;
+}
+.dashboard-sidebar ul li a:hover {
+    color: var(--accent-color);
+}
+
+
+.dashboard-main {
+    background: var(--secondary-color); /* Dark Grey Main Content Area */
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.dashboard-main h2 {
+    margin-bottom: 1.5rem;
+    color: var(--accent-color); /* Gold Heading */
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+}
+
+.task-card {
+    background-color: #2a2a2a;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border-left: 5px solid var(--accent-color); /* Gold Border */
+}
+.task-card h4 {
+    color: var(--light-text);
+}
+.task-card p {
+    color: #ccc;
+}
+
+
+/* Upload Section Styles */
+.upload-section {
+    background: #2a2a2a;
+    padding: 2rem;
+    border-radius: 10px;
+    border: 1px solid #444;
+    margin-bottom: 2rem;
+}
+.upload-section h2 {
+    color: var(--accent-color);
+}
+
+.upload-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.upload-section input, .upload-section select, .upload-section textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #444;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #333;
+    color: var(--light-text);
+}
+.upload-section label {
+    font-weight: bold;
+    color: var(--light-text);
+}
+/* Upload Section Styles */
+.upload-section {
+    /* ... (existing code) ... */
+}
+.upload-section input, .upload-section select, .upload-section textarea {
+    /* ... (existing code) ... */
+}
+/* NAYA FILE INPUT STYLING */
+.form-input-file {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #444;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #333;
+    color: var(--light-text);
+}
+.form-input-file::file-selector-button {
+    background: var(--tertiary-color);
+    color: var(--light-text);
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    margin-right: 15px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.form-input-file::file-selector-button:hover {
+    background: var(--accent-color);
+    color: var(--dark-text);
+}
+
+.btn {
+    display: inline-block;
+    background: var(--accent-color);
+    color: var(--dark-text);
+    padding: 0.8rem 2rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary-color {
+    background: var(--primary-color);
+    color: #fff;
+}
+.btn-primary-color:hover {
+    background: var(--secondary-color);
+}
+
+/* Status Message */
+.status-message {
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+}
+.status-message.success {
+    background-color: #28a745;
+}
+.status-message.error {
+    background-color: #dc3545;
+}
+
+/* Footer */
+.footer {
+    background: var(--primary-color);
+    color: #fff;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 20px;
+}
+
+/* Media Queries for Responsiveness */
+@media(max-width: 768px) {
+    .dashboard-grid-container {
+        grid-template-columns: 1fr;
+    }
+}

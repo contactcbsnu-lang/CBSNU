@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - CBSN-U</title>
+    <link rel="stylesheet" href="css/dashboard-style.css"> 
+    <style>
+        /* Reusing task-card for announcements but adding specific styles */
+        .task-card { 
+            border-left: 5px solid #007bff; /* Blue accent for visual cue */
+        }
+        .download-btn {
+            background-color: #28a745; /* Green */
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .download-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo-container-dash">
+            <img src="image/1744649096909.png" alt="CBSN-U Logo" class="dash-logo">
+            <div class="logo">CBSN-U Student Portal</div>
+        </div>
+        <button class="hamburger" id="hamburger-btn">&#9776;</button>
+        <ul id="nav-links">
+            <li><a href="#">My Profile</a></li>
+            <li><a href="#">Grades</a></li>
+            <li><a href="index.html">Logout</a></li>
+        </ul>
+    </nav>
+
+    <header class="dashboard-header">
+        <div class="container">
+            <h1>Welcome, Student Name!</h1>
+            <p>Your personalized learning hub awaits.</p>
+        </div>
+    </header>
+    
+    <main class="dashboard-content">
+        <div class="container dashboard-grid-container">
+            <div class="dashboard-sidebar">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="results.html">View Results</a></li>
+                    <li><a href="admit-card.html">Download Admit Card</a></li>
+                    <li><a href="tpc.html">Mock Test Centre</a></li>
+                    <li><a href="downloads.html">Study Resources</a></li>
+                </ul>
+            </div>
+            <div class="dashboard-main">
+                <h2>My Current Courses</h2>
+                <div class="task-card">
+                    <h4>Advanced Mathematics</h4>
+                    <p>Instructor: John Smith</p>
+                    <p>Progress: 40% Complete</p>
+                </div>
+                
+                <h2 style="margin-top: 2rem;">Teacher Uploads / Announcements</h2>
+                <div id="uploads-list">
+                    <p class="no-uploads-message">Loading announcements...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 CBSN-U. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+    <script>
+        // Firebase config (same as admin)
+        const firebaseConfig = {
+            apiKey: "AIzaSyCPN3VAXottCg3vDr0fMSu1niSVGNT3V9o",
+            authDomain: "cbsnu-d8dbb.firebaseapp.com",
+            projectId: "cbsnu-d8dbb",
+            storageBucket: "cbsnu-d8dbb.firebasestorage.app",
+            messagingSenderId: "1066269637289",
+            appId: "1:1066269637289:web:cb1977ba240e05a0b587b8",
+            measurementId: "G-TMBEL8E5ZQ"
+        };
+        
+        // Initialize Firebase
+        if (typeof firebase !== 'undefined' && !firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        const db = typeof firebase !== 'undefined' ? firebase.firestore() : null;
+
+        // ... (start of script tag)
+    <script>
+        // ... (firebase config and initialization)
+        
+        // Function to load and display uploads from Firestore
+        function displayUploads() {
+            const uploadsList = document.getElementById('uploads-list');
+            uploadsList.innerHTML = '<p class="no-uploads-message">Fetching data...</p>';
+
+            if (!db) {
+                uploadsList.innerHTML = '<p class="no-uploads-message" style="color:#E0B973;">Database is not connected. Please run the website on a server (e.g., Live Server) to fetch announcements.</p>';
+                return;
+            }
+            
+            // USE onSnapshot for real-time updates
+            db.collection("teacher_announcements").orderBy("timestamp", "desc").onSnapshot((snapshot) => {
+                uploadsList.innerHTML = ''; // Clear loading message
+                const uploads = [];
+                snapshot.forEach((doc) => {
+                    uploads.push(doc.data());
+                });
+                
+                if (uploads.length === 0) {
+                    uploadsList.innerHTML = '<p class="no-uploads-message">No new notes or announcements at the moment.</p>';
+                } else {
+                    uploads.forEach(upload => {
+                        // Check if a file was attached and generate a download link
+                        const fileLink = upload.fileURL ? 
+                            `<a href="${upload.fileURL}" target="_blank" class="download-btn" download="${upload.fileName || 'file_download'}">Download ${upload.fileName || 'File'}</a>` : 
+                            '';
+                        
+                        const uploadItem = document.createElement('div');
+                        uploadItem.classList.add('task-card'); // Reusing task-card style
+                        
+                        const details = `
+                            <div style="display:flex; justify-content: space-between; align-items:center;">
+                                <div>
+                                    <h4>${upload.title}</h4>
+                                    <p style="font-size:0.9rem; color:#A9A9A9;">Type: <strong>${upload.type}</strong> - Uploaded: ${upload.date}</p>
+                                </div>
+                                ${fileLink}
+                            </div>
+                            <p style="font-size:0.9rem; margin-top: 10px; color:#ccc;">${upload.description}</p>
+                        `;
+                        
+                        uploadItem.innerHTML = details;
+                        uploadsList.appendChild(uploadItem);
+                    });
+                }
+            }, error => {
+                uploadsList.innerHTML = `<p class="no-uploads-message" style="color:red; font-size:1rem;">Error fetching announcements. Check Firebase Console. Code: ${error.message}</p>`;
+            });
+        }
+        
+        // ... (hamburger logic)
+
+        // Call the display function when the page loads
+        document.addEventListener('DOMContentLoaded', displayUploads);
+    </script>
+</body>
+</html>
+            // Fetch data from the 'teacher_announcements' collection, ordered by timestamp
+            db.collection("teacher_announcements").orderBy("timestamp", "desc").onSnapshot((snapshot) => {
+                uploadsList.innerHTML = ''; // Clear loading message
+                const uploads = [];
+                snapshot.forEach((doc) => {
+                    uploads.push(doc.data());
+                });
+                
+                if (uploads.length === 0) {
+                    uploadsList.innerHTML = '<p class="no-uploads-message">No new notes or announcements at the moment.</p>';
+                } else {
+                    uploads.forEach(upload => {
+                        // Check if a file was attached and generate a download link
+                        const fileLink = upload.fileURL ? 
+                            `<a href="${upload.fileURL}" target="_blank" class="download-btn" download="${upload.fileName || 'file_download'}">Download ${upload.fileName || 'File'}</a>` : 
+                            '';
+                        
+                        const uploadItem = document.createElement('div');
+                        uploadItem.classList.add('task-card'); // Reusing task-card style
+                        
+                        const details = `
+                            <div style="display:flex; justify-content: space-between; align-items:center;">
+                                <div>
+                                    <h4>${upload.title}</h4>
+                                    <p style="font-size:0.9rem; color:#A9A9A9;">Type: <strong>${upload.type}</strong> - Uploaded: ${upload.date}</p>
+                                </div>
+                                ${fileLink}
+                            </div>
+                            <p style="font-size:0.9rem; margin-top: 10px;">${upload.description}</p>
+                        `;
+                        
+                        uploadItem.innerHTML = details;
+                        uploadsList.appendChild(uploadItem);
+                    });
+                }
+            }, error => {
+                uploadsList.innerHTML = `<p class="no-uploads-message" style="color:red; font-size:1rem;">Error fetching announcements. Check Firebase Console. Code: ${error.message}</p>`;
+            });
+        }
+
+        // --- Hamburger Menu Logic ---
+        document.getElementById('hamburger-btn').addEventListener('click', function() {
+            var navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('active');
+        });
+
+        // Call the display function when the page loads. Using onSnapshot ensures near real-time updates.
+        document.addEventListener('DOMContentLoaded', displayUploads);
+    </script>
+</body>
+</html>
