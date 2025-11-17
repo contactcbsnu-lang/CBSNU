@@ -1613,6 +1613,258 @@ footer {
         z-index: 2;
         opacity: 1;
     }
+/* style.css mein yeh naye ya updated styles add karein */
 
+/* === General Page Main Content & Container === */
+.page-main-content {
+    padding: 20px 0; /* Adjust as needed */
+    max-width: 1200px; /* Max width for content */
+    margin: 0 auto; /* Center the content */
+    position: relative;
+    z-index: 2; /* To ensure content is above video background */
+}
+
+/* === Page Hero Section === */
+.page-hero {
+    text-align: center;
+    padding: 60px 20px;
+    margin-bottom: 40px;
+    color: var(--text-light); /* Ensure text is visible */
+}
+
+.page-hero h1 {
+    font-size: 3.5em; /* Larger title */
+    margin-bottom: 15px;
+    color: var(--text-light); /* Explicitly set color */
+}
+
+.page-hero p {
+    font-size: 1.2em;
+    color: var(--text-light); /* Explicitly set color */
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* === Content Section for Contact Form & Info === */
+.about-content { /* Existing class used, ensuring it applies styles */
+    width: 80%; /* From your HTML, ensure responsiveness */
+    max-width: 900px; /* Optional: limit max width */
+    margin: 40px auto;
+    background-color: var(--bg-dark); /* Form section background */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    color: var(--text-light); /* Default text color for this section */
+}
+
+.content-section h2 {
+    font-size: 2.2em;
+    color: var(--accent); /* Heading color */
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.content-section p {
+    font-size: 1.1em;
+    color: var(--text-muted); /* Subtitle color */
+    margin-bottom: 30px;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.section-subtitle {
+    color: var(--text-muted);
+    font-size: 1.1em;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* === Contact Form Styling === */
+.contact-form {
+    display: grid;
+    gap: 20px; /* Space between form groups */
+    margin-top: 30px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Default to single column */
+    gap: 20px;
+}
+
+@media (min-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr 1fr; /* Two columns on larger screens */
+    }
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--text-light);
+}
+
+.contact-form .form-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--primary);
+    border-radius: 5px;
+    background-color: var(--bg-darkest); /* Darker input background */
+    color: var(--text-light);
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+}
+
+.contact-form .form-input:focus {
+    outline: none;
+    border-color: var(--accent); /* Highlight on focus */
+}
+
+.contact-form textarea.form-input {
+    resize: vertical; /* Allow vertical resizing for textarea */
+    min-height: 120px;
+}
+
+/* === Submit Button === */
+.btn-calculate { /* Using the existing button class you had */
+    display: block;
+    width: 100%;
+    padding: 15px 25px;
+    background-color: var(--primary); /* Primary button color */
+    color: var(--text-light);
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 20px;
+}
+
+.btn-calculate:hover {
+    background-color: var(--accent); /* Darker on hover */
+    transform: translateY(-2px);
+}
+
+.btn-calculate:disabled {
+    background-color: var(--text-muted);
+    cursor: not-allowed;
+}
+
+/* === Form Status Messages (Success/Error) === */
+.form-status {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.form-status.success {
+    background-color: #4CAF50; /* Green for success */
+    color: white;
+}
+
+.form-status.error {
+    background-color: #f44336; /* Red for error */
+    color: white;
+}
+
+/* === Contact Info Grid === */
+.function-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid for boxes */
+    gap: 25px;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.function-box {
+    background-color: var(--bg-dark); /* Same as form background */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-light);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.function-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.function-box i {
+    font-size: 3em;
+    color: var(--accent); /* Icon color */
+    margin-bottom: 15px;
+}
+
+.function-box h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: var(--primary); /* Title color */
+}
+
+.function-box p {
+    font-size: 1em;
+    color: var(--text-muted); /* Text color */
+    line-height: 1.5;
+}
+
+
+/* === Footer Styling === */
+footer {
+    background-color: var(--bg-darkest); /* Darkest background for footer */
+    color: var(--text-light);
+    padding: 40px 20px;
+    text-align: center;
+    border-top: 1px solid var(--primary);
+    position: relative; /* Ensure footer is above video if content is short */
+    z-index: 2; /* To ensure content is above video background */
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto 30px auto;
+    text-align: left; /* Align text within footer columns */
+}
+
+.footer-col h3 {
+    color: var(--accent);
+    margin-bottom: 15px;
+    font-size: 1.4em;
+}
+
+.footer-col p, .footer-col a {
+    color: var(--text-muted);
+    font-size: 0.95em;
+    margin-bottom: 8px;
+    display: block; /* Make links block level */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-col a:hover {
+    color: var(--primary); /* Hover effect for links */
+}
+
+.footer-bottom {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(var(--primary-rgb), 0.2);
+    font-size: 0.9em;
+    color: var(--text-muted);
+    text-align: center;
+}
 
 }
+
