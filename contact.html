@@ -9,15 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
-    <!-- Optional: EmailJS script if you still want email functionality -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-    <!-- NEW: Modular Firebase SDK Imports (v11) -->
-    <script type="module" src="https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js"></script>
-    <script type="module" src="https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js"></script>
 </head>
-<body data-theme="coastal-midnight"> 
-    <div class="video-background">
+<body data-theme="coastal-midnight"> <div class="video-background">
         <video autoplay loop muted playsinline>
             <source src="image/3163534-uhd_3840_2160_30fps.mp4" type="video/mp4">
             Your browser does not support the video tag.
@@ -25,51 +19,114 @@
     </div>
 
     <div class="content-wrapper">
+
         <div class="theme-switcher">
              <div class="theme-dot" id="theme-rouge" title="Deep Rouge"></div>
-             <!-- ... other theme dots ... -->
+            <div class="theme-dot" id="theme-ember" title="Warm Ember"></div>
+            <div class="theme-dot" id="theme-gold" title="Regal Gold"></div>
+            <div class="theme-dot" id="theme-teal" title="Spectral Teal"></div>
+            <div class="theme-dot" id="theme-platinum" title="Modern Platinum"></div>
+            <div class="theme-dot" id="theme-midnight" title="Coastal Midnight"></div>
+            <div class="theme-dot" id="theme-pw-yellow" title="PW Yellow"></div>
         </div>
 
-        <main>
-            <div class="container">
-                <section id="contact-form-section">
-                    <h2>Contact Us</h2>
-                    <p class="section-subtitle">Contact us today to begin your educational journey.</p>
+        <header>
+             <div class="logo-container">
+                <img src="image/1744649096909.png" alt="CBSN-U Logo" class="logo">
+                <h1>CBSN-U</h1>
+            </div>
+            <button class="nav-toggle" aria-label="toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+            <div class="nav-menu">
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li class="dropdown">
+                            <a href="about.html">About Us ▾</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="about.html">About CBSN-U</a></li>
+                                <li><a href="vision.html">Vision</a></li>
+                                <li><a href="objectives.html">Objectives</a></li>
+                                <li><a href="functions.html">Functions</a></li>
+                                <li><a href="governing-body.html">Governing Body</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="exams.html">Exams ▾</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="exams.html">For Institutes</a></li>
+                                <li><a href="school.html">For Schools</a></li>
+                                <li><a href="cbsnu-exams.html">CBSN-U Exams</a></li>
+                                <li><a href="coaching.html">Coaching Collaborations</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="tpc.html">Test Practice Centre</a></li>
+                        <li><a href="rti.html">RTI</a></li>
+                        <li><a href="franchise.html">Franchise</a></li>
+                        <li><a href="downloads.html">Downloads</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </nav>
+                <div class="login-dropdown dropdown">
+                    <button class="login-btn">Login/Signup ▾</button>
+                    <ul class="dropdown-menu">
+                        <li><a href="login-student.html">Students Login</a></li>
+                        <li><a href="login-admin.html">Admin Login</a></li>
+                        <li><a href="login-school.html">School Login</a></li>
+                        <li><a href="login-institute.html">Institute/Coaching Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <main class="page-main-content">
+            <div class="page-hero">
+                <h1>Contact Us</h1>
+                <p>We're here to help. Send us an inquiry and we'll get back to you.</p>
+            </div>
+
+            <div class="about-content" style="width: 80%; margin: 40px auto;">
+                
+                <section class="content-section">
+                    <h2>Send Us an Inquiry</h2>
+                    <p>Have a question or want to partner with us? Fill out the form below.</p>
                     
-                    <!-- Status Message Box -->
-                    <div id="status-message" style="display: none; padding: 15px; margin: 15px 0; border-radius: 5px; text-align: center; font-weight: bold;"></div>
+                    <form id="contact-form" class="contact-form">
+                        
+                        <div id="form-status" class="form-status"></div>
 
-                    <form id="contact-form">
-                        <div class="form-group">
-                            <label for="name">Your Name:</label>
-                            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                        <div class="form-grid">
+                            <div>
+                                <label for="from_name">Full Name</label>
+                                <input type="text" id="from_name" name="from_name" class="form-input" required>
+                            </div>
+                            <div>
+                                <label for="from_email">Email Address</label>
+                                <input type="email" id="from_email" name="from_email" class="form-input" required>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="email">Email:</label>
-                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                        
+                        <div>
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" class="form-input" required>
                         </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number:</label>
-                            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+                        <div>
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" class="form-input" rows="6" required></textarea>
                         </div>
-                        <div class="form-group">
-                            <label for="subject">Subject:</label>
-                            <input type="text" id="subject" name="subject" placeholder="Enter the subject" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message:</label>
-                            <textarea id="message" name="message" rows="5" placeholder="Enter your message here" required></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn" id="submit-btn">Send Message</button>
+                        
+                        <button type="submit" id="form-submit-btn" class="btn-calculate">
+                            Send Message
+                        </button>
                     </form>
-                </section>
-
-                <section id="contact-info">
-                    <h2>Our Contact Info</h2>
-                    <div class="contact-boxes">
+                    
+                    <h3 class="section-subtitle" style="margin-top: 40px;">Or Contact Us Directly</h3>
+                    <div class="function-grid">
                         <div class="function-box">
                             <i class="fas fa-envelope"></i>
-                            <h3>Email</h3>
+                            <h3>Email Us</h3>
                             <p>cbsnu.contact@gmail.com</p>
                         </div>
                         <div class="function-box">
@@ -83,6 +140,7 @@
                             <p>Begusarai, Bihar, 851101</p>
                         </div>
                     </div>
+
                 </section>
 
             </div>
@@ -108,78 +166,10 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 CBSN-U. All rights reserved. | Website: cbsnu.in</p>
+                <p>&copy; 2025 CBSN-U. All rights reserved. | Website: cbsnu.live</p>
             </div>
         </footer>
-    </div>
-    
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Firebase Configuration and Contextual Variables
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        const form = document.getElementById('contact-form');
-        const submitBtn = document.getElementById('submit-btn');
-        const statusMessage = document.getElementById('status-message');
-
-        function showStatus(message, type) {
-            statusMessage.style.display = 'block';
-            statusMessage.textContent = message;
-            if (type === 'success') {
-                statusMessage.style.backgroundColor = '#d4edda';
-                statusMessage.style.color = '#155724';
-                statusMessage.style.border = '1px solid #c3e6cb';
-            } else if (type === 'error') {
-                statusMessage.style.backgroundColor = '#f8d7da';
-                statusMessage.style.color = '#721c24';
-                statusMessage.style.border = '1px solid #f5c6cb';
-            }
-        }
-
-        // Handle Form Submission for Firestore
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Sending...';
-            statusMessage.style.display = 'none';
-
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                subject: document.getElementById('subject').value,
-                message: document.getElementById('message').value,
-                // Server timestamp for tracking when the inquiry was received
-                timestamp: serverTimestamp() 
-            };
-
-            // MANDATORY Public Collection Path for contact inquiries
-            const collectionPath = `artifacts/${appId}/public/data/contact_inquiries`;
-
-            try {
-                // Add the document to the Firestore collection
-                await addDoc(collection(db, collectionPath), formData);
-                
-                showStatus('Message sent successfully! We will contact you soon.', 'success');
-                form.reset();
-            } catch (error) {
-                console.error("Error writing document: ", error);
-                showStatus(`Error sending message: ${error.message}`, 'error');
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Send Message';
-            }
-        });
-
-        // --- Theme Switcher Logic (Keeping existing logic for completeness) ---
-        // ... (Your existing theme switcher code should be here) ...
-    </script>
+    </div> <script src="js/script.js"></script>
 </body>
 </html>
