@@ -142,7 +142,7 @@ a {
 #theme-midnight { background-color: #447794; }
 #theme-gold { background-color: #E0B973; }
 #theme-teal { background-color: #40E0D0; }
-#theme-platinum { background-color: #C0C0C0; }
+
 #theme-pw-yellow { background-color: #ffc900; border: 2px solid #0B3768; }
 
 /* ===== Header & Navbar ===== */
@@ -1878,6 +1878,7 @@ header {
     z-index: 100;
 }
 }
+
 
 
 
