@@ -500,9 +500,18 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.textContent = 'Sending...';
 
             // Check if emailjs is defined before using it
-            if (typeof emailjs !== 'undefined') {
-                emailjs.sendForm('service_nvwp74b', 'template_jphnhtj', this)
-                    .then(() => {
+    if (typeof emailjs !== 'undefined') {
+        const formData = new FormData(this);
+        const templateParams = {
+            from_name: formData.get('from_name'),
+            user_email: formData.get('from_email'), // Mapped form field 'from_email' to new template variable 'user_email'
+            subject: formData.get('subject'),
+            message: formData.get('message'),
+        };
+    
+        // Use .send() method with the manually prepared parameters
+        emailjs.send('service_nvwp74b', 'template_jphnhtj', templateParams)
+                        .then(() => {
                         statusMsg.textContent = 'Message sent successfully! We will get back to you soon.';
                         statusMsg.className = 'form-status success';
                         submitBtn.textContent = 'Send Message';
@@ -545,5 +554,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     */
     // End of 2i.
+
 
 }); // <-- THIS IS THE SINGLE, FINAL CLOSING BRACKET
