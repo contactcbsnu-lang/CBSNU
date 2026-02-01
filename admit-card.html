@@ -1,202 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admit Card - CBSN-U</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
-    <style>
-        :root {
-            --accent-color: #f39c12; /* Single theme color: Gold/Orange */
-            --glass-bg: rgba(255, 255, 255, 0.1);
-            --text-color: #ffffff;
-        }
+<meta charset="UTF-8">
+<title>Admit Card Download | CBSN-U</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: 'Roboto', sans-serif;
-            color: var(--text-color);
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-        /* Video Background */
-        .video-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
+<style>
+body{
+    margin:0;
+    font-family:'Roboto',sans-serif;
+    background:#0f2027;
+    background:linear-gradient(to right,#2c5364,#203a43,#0f2027);
+    color:#fff;
+}
 
-        .video-background video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+header{
+    padding:15px 5%;
+    background:rgba(0,0,0,.7);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
 
-        /* Header with only Back Button */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 5%;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
-        }
+header h2{margin:0;}
 
-        .logo-container { display: flex; align-items: center; }
-        .logo { height: 40px; margin-right: 12px; }
-        .logo-container h1 { font-size: 1.5rem; margin: 0; }
+.container{
+    max-width:450px;
+    margin:60px auto;
+    background:rgba(255,255,255,.1);
+    padding:35px;
+    border-radius:15px;
+    backdrop-filter:blur(15px);
+    box-shadow:0 15px 40px rgba(0,0,0,.6);
+}
 
-        .back-btn {
-            color: white;
-            text-decoration: none;
-            padding: 8px 20px;
-            border: 1px solid var(--accent-color);
-            border-radius: 5px;
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+.container h1{
+    text-align:center;
+    margin-bottom:25px;
+    font-weight:400;
+}
 
-        .back-btn:hover {
-            background: var(--accent-color);
-            color: #000;
-        }
+label{
+    display:block;
+    margin:15px 0 8px;
+}
 
-        /* Main Content */
-        .content-wrapper { flex: 1; }
+input{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:6px;
+    font-size:15px;
+}
 
-        .page-hero { text-align: center; padding: 50px 20px 20px; }
-        .page-hero h1 { font-family: 'EB Garamond', serif; font-size: 2.5rem; margin-bottom: 10px; }
+button{
+    width:100%;
+    margin-top:25px;
+    padding:14px;
+    background:#f39c12;
+    border:none;
+    border-radius:6px;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+}
 
-        .form-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 40px;
-            border-radius: 15px;
-            max-width: 500px;
-            margin: 0 auto 50px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
+button:hover{background:#ffb400;}
 
-        .input-group { margin-bottom: 25px; }
-        .input-group label { display: block; margin-bottom: 10px; font-weight: 300; letter-spacing: 1px; }
-        .input-group input {
-            width: 100%;
-            padding: 12px;
-            border-radius: 5px;
-            border: none;
-            background: rgba(255,255,255,0.9);
-            box-sizing: border-box;
-            font-size: 1rem;
-        }
+#result{
+    margin-top:25px;
+    text-align:center;
+}
 
-        .download-btn {
-            width: 100%;
-            padding: 15px;
-            background: var(--accent-color);
-            color: #000;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
+.download-btn{
+    margin-top:15px;
+    padding:12px 20px;
+    background:#27ae60;
+    color:#fff;
+    border:none;
+    border-radius:5px;
+    font-size:15px;
+    cursor:pointer;
+}
 
-        .download-btn:hover {
-            letter-spacing: 1px;
-            filter: brightness(1.1);
-        }
-
-        /* Footer */
-        footer {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 30px 5%;
-            text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .footer-content p { font-size: 0.9rem; opacity: 0.7; margin: 5px 0; }
-        .social-links { margin-top: 15px; }
-        .social-links a { color: white; margin: 0 10px; font-size: 1.2rem; opacity: 0.6; transition: 0.3s; }
-        .social-links a:hover { opacity: 1; color: var(--accent-color); }
-    </style>
+.error{
+    color:#ff7675;
+    margin-top:15px;
+}
+</style>
 </head>
+
 <body>
 
-    <div class="video-background">
-        <video autoplay loop muted playsinline>
-            <source src="image/3163534-uhd_3840_2160_30fps.mp4" type="video/mp4">
-        </video>
-    </div>
+<header>
+    <h2>CBSN-U</h2>
+    <a href="javascript:history.back()" style="color:#fff;text-decoration:none;">
+        <i class="fas fa-arrow-left"></i> Back
+    </a>
+</header>
 
-    <header>
-        <div class="logo-container">
-            <img src="image/1744649096909.png" alt="CBSN-U Logo" class="logo">
-            <h1>CBSN-U</h1>
-        </div>
-        <a href="javascript:history.back()" class="back-btn">
-            <i class="fas fa-arrow-left"></i> Back
-        </a>
-    </header>
+<div class="container">
+    <h1>Admit Card Portal</h1>
 
-    <div class="content-wrapper">
-        <main class="page-main-content">
-            <div class="page-hero">
-                <h1>Admit Card Portal</h1>
-                <p>Enter your details to download your hall ticket</p>
-            </div>
+    <label>Roll Number / Application ID</label>
+    <input type="text" id="roll" placeholder="Enter Roll Number">
 
-            <section class="form-card">
-                <form id="admitCardForm">
-                    <div class="input-group">
-                        <label>Application Number / Roll No.</label>
-                        <input type="text" placeholder="Enter Application ID" required>
-                    </div>
+    <label>Date of Birth</label>
+    <input type="date" id="dob">
 
-                    <div class="input-group">
-                        <label>Date of Birth</label>
-                        <input type="date" required>
-                    </div>
+    <button onclick="fetchAdmitCard()">
+        <i class="fas fa-search"></i> Search Admit Card
+    </button>
 
-                    <button type="submit" class="download-btn">
-                        Download Admit Card <i class="fas fa-download" style="margin-left: 10px;"></i>
+    <div id="result"></div>
+</div>
+
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbytFOwIo3lUztp-ajULfk9Gg3y7idU49vrKat-CA5hh3eKDHPR_LMHH9JLmRTJ5S0XU/exec";
+
+function fetchAdmitCard(){
+    const roll = document.getElementById("roll").value.trim();
+    const dob  = document.getElementById("dob").value;
+
+    if(!roll || !dob){
+        alert("Please enter Roll No and Date of Birth");
+        return;
+    }
+
+    document.getElementById("result").innerHTML = "Checking details...";
+
+    fetch(`${SCRIPT_URL}?roll=${roll}&dob=${dob}`)
+    .then(res => res.json())
+    .then(data => {
+        if(data.status === "success"){
+            document.getElementById("result").innerHTML = `
+                <p>Welcome <b>${data.name}</b></p>
+                <a href="${data.link}" target="_blank">
+                    <button class="download-btn">
+                        <i class="fas fa-download"></i> Download Admit Card
                     </button>
-                </form>
-            </section>
-        </main>
-    </div>
+                </a>
+            `;
+        }else{
+            document.getElementById("result").innerHTML =
+            `<p class="error">Invalid Roll Number or Date of Birth</p>`;
+        }
+    })
+    .catch(()=>{
+        document.getElementById("result").innerHTML =
+        `<p class="error">Server error. Try again later.</p>`;
+    });
+}
+</script>
 
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2026 CBSN-U Examination Authority. All Rights Reserved.</p>
-            <p>Designed for Cross Border Study Network University</p>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fas fa-envelope"></i></a>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        document.getElementById('admitCardForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Processing request... Your admit card will be generated shortly.');
-        });
-    </script>
 </body>
 </html>
