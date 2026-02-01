@@ -7,6 +7,19 @@
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+	<link rel="manifest" href="manifest.json">
+
+	<meta name="theme-color" content="#8B0000">
+
+	<script>
+  		if ('serviceWorker' in navigator) {
+    		window.addEventListener('load', () => {
+      			navigator.serviceWorker.register('sw.js')
+        			.then(reg => console.log('Service Worker Registered!', reg))
+        			.catch(err => console.log('Service Worker Error:', err));
+    		});
+  		}
+	</script>
 </head>
 <body data-theme="coastal-midnight">
 
@@ -372,4 +385,5 @@
 
     </div> <script src="js/script.js"></script>
 </body>
+
 </html>
