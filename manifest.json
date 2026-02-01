@@ -1,7 +1,7 @@
 {
   "name": "CBSN-U University",
   "short_name": "CBSN-U",
-  "start_url": "/CBSNU/contact.html",
+  "start_url": "/CBSNU/index.html",
   "display": "standalone",
   "background_color": "#8B0000",
   "theme_color": "#8B0000",
@@ -17,4 +17,5 @@
       "type": "image/png"
     }
   ]
+
 }
