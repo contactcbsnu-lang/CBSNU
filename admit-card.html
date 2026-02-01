@@ -119,7 +119,7 @@ button:hover{background:#ffb400;}
 </div>
 
 <script>
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw43KgU1AUD66sy4U0UtZtmLSiQqq01Xxw82GIIzTR2f_ftXEJM1dp8YTNs7jQgYkuAwg/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzO1JFLuuDNk0U4GhGhTJV1TKQ_6XlX04lBfPyhmGDjLCIR628aoCGXB0xcNlpVRbXcPg/exec";
 
 function fetchAdmitCard(){
     const roll = document.getElementById("roll").value.trim();
@@ -132,7 +132,7 @@ function fetchAdmitCard(){
 
     document.getElementById("result").innerHTML = "Checking details...";
 
-    fetch(`${SCRIPT_URL}?roll=${roll}&dob=${dob}`)
+    fetch(`${SCRIPT_URL}?roll=${encodeURIComponent(roll)}&dob=${encodeURIComponent(dob)}`)
     .then(res => res.json())
     .then(data => {
         if(data.status === "success"){
@@ -158,5 +158,6 @@ function fetchAdmitCard(){
 
 </body>
 </html>
+
 
 
