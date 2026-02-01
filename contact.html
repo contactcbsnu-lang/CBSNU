@@ -167,13 +167,18 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 CBSN-U. All rights reserved. | Website: cbsnu.live</p>
+                <p>&copy; 2025 CBSN. All rights reserved.</p>
             </div>
         </footer>
 
     </div> 
     
     <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            // Default theme apply karna agar kuch set na ho
+            const defaultTheme = "deep-rouge";
+            document.body.setAttribute('data-theme', defaultTheme);
+        });
         // --- Email.js Configuration (using previous keys) ---
         emailjs.init("DqEZGom9bxso5B5Zl"); 
 
@@ -234,6 +239,7 @@
     </script>
 </body>
 </html>
+
 
 
 
