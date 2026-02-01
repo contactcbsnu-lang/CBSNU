@@ -1,125 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Results - CBSN-U</title>
-    <link rel="stylesheet" href="css/style.css">
-    
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<meta charset="UTF-8">
+<title>Result Portal | CBSN-U</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body{
+    margin:0;
+    font-family:'Roboto',sans-serif;
+    background:linear-gradient(to right,#141e30,#243b55);
+    color:#fff;
+}
+
+header{
+    padding:15px 5%;
+    background:rgba(0,0,0,.75);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+header h2{margin:0;}
+
+.container{
+    max-width:460px;
+    margin:80px auto;
+    background:rgba(255,255,255,.1);
+    padding:40px;
+    border-radius:18px;
+    backdrop-filter:blur(18px);
+    box-shadow:0 20px 45px rgba(0,0,0,.6);
+}
+
+.container h1{
+    text-align:center;
+    margin-bottom:30px;
+    font-weight:400;
+}
+
+label{
+    display:block;
+    margin:18px 0 8px;
+}
+
+input{
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:7px;
+    font-size:15px;
+}
+
+button{
+    width:100%;
+    margin-top:28px;
+    padding:15px;
+    background:#f39c12;
+    border:none;
+    border-radius:7px;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+button:hover{background:#ffb703;}
+
+#resultBox{
+    margin-top:28px;
+    text-align:center;
+}
+
+.download-btn{
+    margin-top:18px;
+    padding:13px 22px;
+    background:#27ae60;
+    color:#fff;
+    border:none;
+    border-radius:6px;
+    font-size:15px;
+    cursor:pointer;
+}
+
+.error{
+    color:#ff7675;
+    margin-top:15px;
+}
+</style>
 </head>
-<body data-theme="coastal-midnight"> <div class="video-background">
-        <video autoplay loop muted playsinline>
-            <source src="image/3163534-uhd_3840_2160_30fps.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
 
-    <div class="content-wrapper">
+<body>
 
-        <div class="theme-switcher">
-             <div class="theme-dot" id="theme-rouge" title="Deep Rouge"></div>
-            <div class="theme-dot" id="theme-ember" title="Warm Ember"></div>
-            <div class="theme-dot" id="theme-gold" title="Regal Gold"></div>
-            <div class="theme-dot" id="theme-teal" title="Spectral Teal"></div>
-            <div class="theme-dot" id="theme-platinum" title="Modern Platinum"></div>
-            <div class="theme-dot" id="theme-midnight" title="Coastal Midnight"></div>
-            <div class="theme-dot" id="theme-pw-yellow" title="PW Yellow"></div>
-        </div>
+<header>
+    <h2>CBSN-U</h2>
+    <a href="javascript:history.back()" style="color:#fff;text-decoration:none;">
+        <i class="fas fa-arrow-left"></i> Back
+    </a>
+</header>
 
-        <header>
-             <div class="logo-container">
-                <img src="image/1744649096909.png" alt="CBSN-U Logo" class="logo">
-                <h1>CBSN-U</h1>
-            </div>
-            <button class="nav-toggle" aria-label="toggle navigation">
-                <span class="hamburger"></span>
-            </button>
-            <div class="nav-menu">
-                <nav>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li class="dropdown">
-                            <a href="about.html">About Us ▾</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="about.html">About CBSN-U</a></li>
-                                <li><a href="vision.html">Vision</a></li>
-                                <li><a href="objectives.html">Objectives</a></li>
-                                <li><a href="functions.html">Functions</a></li>
-                                <li><a href="governing-body.html">Governing Body</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="exams.html">Exams ▾</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="exams.html">For Institutes</a></li>
-                                <li><a href="school.html">For Schools</a></li>
-                                <li><a href="cbsnu-exams.html">CBSN-U Exams</a></li>
-                                <li><a href="coaching.html">Coaching Collaborations</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="tpc.html">Test Practice Centre</a></li>
-                        <li><a href="rti.html">RTI</a></li>
-                        <li><a href="franchise.html">Franchise</a></li>
-                        <li><a href="downloads.html">Downloads</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                    </ul>
-                </nav>
-                <div class="login-dropdown dropdown">
-                    <button class="login-btn">Login/Signup ▾</button>
-                    <ul class="dropdown-menu">
-                        <li><a href="login-student.html">Students Login</a></li>
-                        <li><a href="login-admin.html">Admin Login</a></li>
-                        <li><a href="login-school.html">School Login</a></li>
-                        <li><a href="login-institute.html">Institute/Coaching Login</a></li>
-                    </ul>
-                </div>
-            </div>
-        </header>
+<div class="container">
+    <h1>Result Portal</h1>
 
-        <main class="page-main-content">
-            <div class="page-hero">
-                <h1>View Results</h1>
-                <p>Check your scores and download your analytic result card.</p>
-            </div>
+    <label>Roll Number / Application ID</label>
+    <input type="text" id="roll" placeholder="Enter Roll Number">
 
-            <div class="about-content" style="width: 80%; margin: 40px auto;">
-                
-                <section id="results-form" class="content-section">
-                    <h2>Results Portal</h2>
-                    <p>The portal to view results is currently under development.</p>
-                    <p>When live, you will be able to select your institution, enter your details, and view your scores and detailed analytic report card.</p>
-                    <h1 style="font-size: 2.5rem; color: var(--accent); margin-top: 20px; text-align: center;">Coming Soon!</h1>
-                </section>
+    <label>Date of Birth</label>
+    <input type="date" id="dob">
 
-            </div>
-        </main>
-        <footer>
-            <div class="footer-content">
-                 <div class="footer-col">
-                    <h3>CBSN-U</h3>
-                    <p>Cross Border Study Network -U</p>
-                    <p>Founder & CEO: Ritik Raj</p>
-                </div>
-                <div class="footer-col">
-                    <h3>Contact Us</h3>
-                    <p>Email: cbsnu.contact@gmail.com</p>
-                    <p>Phone: +91 8709547748</p>
-                    <p>Address: Begusarai, Bihar, 851101, India</p>
-                </div>
-                <div class="footer-col">
-                    <h3>Quick Links</h3>
-                    <a href="franchise.html">Franchise</a>
-                    <a href="contact.html">Contact</a>
-                    <a href="rti.html">RTI</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 CBSN-U. All rights reserved. | Website: cbsnu.live</p>
-            </div>
-        </footer>
+    <button onclick="fetchResult()">
+        <i class="fas fa-search"></i> Search Result
+    </button>
 
-    </div> <script src="js/script.js"></script>
+    <div id="resultBox"></div>
+</div>
+
+<script>
+const RESULT_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxJeI8gk9gTomr78BZing4ztBZOE5yB1-52XVrK_V_LzEGHhP9iEN3RW4pKFix2A5PFWA/exec";
+
+function fetchResult(){
+    const roll = document.getElementById("roll").value.trim();
+    const dob  = document.getElementById("dob").value;
+
+    if(!roll || !dob){
+        alert("Please enter Roll Number and Date of Birth");
+        return;
+    }
+
+    document.getElementById("resultBox").innerHTML = "Checking result...";
+
+    fetch(`${RESULT_SCRIPT_URL}?roll=${encodeURIComponent(roll)}&dob=${encodeURIComponent(dob)}`)
+    .then(res => res.json())
+    .then(data => {
+        if(data.status === "success"){
+            document.getElementById("resultBox").innerHTML = `
+                <p>Result available for <b>${data.name}</b></p>
+                <a href="${data.link}" target="_blank">
+                    <button class="download-btn">
+                        <i class="fas fa-download"></i> Download Result
+                    </button>
+                </a>
+            `;
+        }else{
+            document.getElementById("resultBox").innerHTML =
+            `<p class="error">Invalid Roll Number or Date of Birth</p>`;
+        }
+    })
+    .catch(()=>{
+        document.getElementById("resultBox").innerHTML =
+        `<p class="error">Server error. Try again later.</p>`;
+    });
+}
+</script>
+
 </body>
 </html>
