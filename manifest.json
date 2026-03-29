@@ -1,7 +1,7 @@
 {
-  "name": "CBSN-U University",
-  "short_name": "CBSN-U",
-  "start_url": "/CBSNU/index.html",
+  "name": "CROSS BORDER STUDY NETWORK",
+  "short_name": "CBSN",
+  "start_url": "/CBSN/index.html",
   "display": "standalone",
   "background_color": "#8B0000",
   "theme_color": "#8B0000",
