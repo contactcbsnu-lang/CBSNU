@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rithiksha AI - Smart Channel Study</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        body { background-color: #001f3f; color: white; }
+        .gold-border { border: 2px solid #D4AF37; }
+        .gold-text { color: #D4AF37; }
+        .gold-bg { background-color: #D4AF37; }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
+    </style>
+</head>
+<body class="p-5 font-sans">
+
+    <div class="max-w-7xl mx-auto">
+        <h1 class="text-3xl font-bold text-center mb-8 gold-text uppercase tracking-widest">Rithiksha AI Study Portal</h1>
+        
+        <div class="bg-[#002d5a] p-4 rounded-lg shadow-lg mb-8 gold-border grid grid-cols-1 md:grid-cols-3 gap-4">
+            <input type="text" id="apiKey" placeholder="YouTube API Key" class="p-2 rounded bg-gray-800 border border-gray-600 outline-none">
+            <input type="text" id="searchQuery" placeholder="Search Topic (e.g. Physics)" class="p-2 rounded bg-gray-800 border border-gray-600 outline-none">
+            <button onclick="searchChannels()" class="gold-bg text-[#001f3f] px-6 py-2 rounded font-bold hover:bg-yellow-500">Find Channels</button>
+        </div>
+
+        <div id="channelSection" class="hidden mb-8">
+            <h3 class="gold-text font-bold mb-3 uppercase text-sm">Step 1: Select a Trusted Channel</h3>
+            <div id="channelResults" class="flex gap-4 overflow-x-auto pb-4"></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 space-y-6">
+                <div id="mainPlayer" class="bg-black rounded-lg overflow-hidden gold-border hidden">
+                    <div class="video-container" id="playerWrapper"></div>
+                    <div class="p-4 bg-[#002d5a]">
+                        <h2 id="nowPlayingTitle" class="text-xl font-bold gold-text"></h2>
+                    </div>
+                </div>
+
+                <div class="bg-[#002d5a] p-6 rounded-lg gold-border">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-bold gold-text underline">Session Notes</h3>
+                        <button onclick="downloadPDF()" class="bg-red-600 hover:bg-red-700 text-white px-4 py-1 rounded text-sm font-bold">Download PDF</button>
+                    </div>
+                    <textarea id="noteArea" class="w-full h-64 p-4 rounded bg-white text-black font-medium outline-none" placeholder="Write your notes here..."></textarea>
+                </div>
+            </div>
+
+            <div class="bg-[#002d5a] p-4 rounded-lg gold-border h-fit min-h-[400px]">
+                <h3 id="videoListHeader" class="text-lg font-bold mb-4 gold-text border-b border-gray-600 pb-2">Videos</h3>
+                <div id="results" class="space-y-4 max-h-[700px] overflow-y-auto pr-2 text-sm text-gray-400">
+                    Search and select a channel first.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const { jsPDF } = window.jspdf;
+
+        // STEP 1: Search for Channels based on Topic
+        async function searchChannels() {
+            const key = document.getElementById('apiKey').value;
+            const query = document.getElementById('searchQuery').value;
+            const channelResults = document.getElementById('channelResults');
+            const channelSection = document.getElementById('channelSection');
+
+            if (!key || !query) return alert("Fill API Key and Topic!");
+
+            channelResults.innerHTML = "Searching channels...";
+            channelSection.classList.remove('hidden');
+
+            try {
+                // Fetch Channels
+                const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=6&q=${encodeURIComponent(query)}&type=channel&key=${key}`;
+                const response = await fetch(url);
+                const data = await response.json();
+
+                channelResults.innerHTML = "";
+                data.items.forEach(item => {
+                    const channelId = item.id.channelId;
+                    const title = item.snippet.title;
+                    const thumb = item.snippet.thumbnails.default.url;
+
+                    channelResults.innerHTML += `
+                        <div onclick="fetchVideosFromChannel('${channelId}', '${title}')" class="flex-shrink-0 bg-[#003d7a] p-4 rounded-lg cursor-pointer border border-transparent hover:border-[#D4AF37] text-center w-40">
+                            <img src="${thumb}" class="w-16 h-16 rounded-full mx-auto mb-2 border-2 border-[#D4AF37]">
+                            <h4 class="text-xs font-bold truncate">${title}</h4>
+                        </div>
+                    `;
+                });
+            } catch (e) { alert("Error fetching channels."); }
+        }
+
+        // STEP 2: Fetch Videos from Selected Channel
+        async function fetchVideosFromChannel(channelId, channelName) {
+            const key = document.getElementById('apiKey').value;
+            const query = document.getElementById('searchQuery').value;
+            const resultsDiv = document.getElementById('results');
+            
+            document.getElementById('videoListHeader').innerText = `Videos from: ${channelName}`;
+            resultsDiv.innerHTML = "Fetching videos...";
+
+            try {
+                // Fetch videos filtering by channelId
+                const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&channelId=${channelId}&q=${encodeURIComponent(query)}&type=video&key=${key}`;
+                const response = await fetch(url);
+                const data = await response.json();
+
+                resultsDiv.innerHTML = "";
+                data.items.forEach(item => {
+                    const videoId = item.id.videoId;
+                    const title = item.snippet.title;
+                    const thumb = item.snippet.thumbnails.medium.url;
+
+                    resultsDiv.innerHTML += `
+                        <div onclick="playVideo('${videoId}', '${title.replace(/'/g, "\\'")}')" class="flex gap-2 p-2 rounded cursor-pointer hover:bg-[#004d99] border-l-2 border-transparent hover:border-[#D4AF37]">
+                            <img src="${thumb}" class="w-20 rounded shadow-sm">
+                            <h3 class="text-[11px] leading-tight font-semibold line-clamp-2">${title}</h3>
+                        </div>
+                    `;
+                });
+            } catch (e) { resultsDiv.innerHTML = "Error loading videos."; }
+        }
+
+        function playVideo(id, title) {
+            document.getElementById('mainPlayer').classList.remove('hidden');
+            document.getElementById('playerWrapper').innerHTML = `<iframe src="https://www.youtube.com/embed/${id}?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+            document.getElementById('nowPlayingTitle').innerText = title;
+        }
+
+        function downloadPDF() {
+            const doc = new jsPDF();
+            const noteText = document.getElementById('noteArea').value;
+            const videoTitle = document.getElementById('nowPlayingTitle').innerText || "Study Note";
+            if (!noteText.trim()) return alert("Notes are empty!");
+            doc.setFontSize(18); doc.text("Rithiksha AI - Study Notes", 10, 20);
+            doc.setFontSize(12); doc.text(`Topic: ${videoTitle}`, 10, 30);
+            doc.line(10, 35, 200, 35);
+            const splitContent = doc.splitTextToSize(noteText, 180);
+            doc.text(splitContent, 10, 45);
+            doc.save(`Rithiksha_Notes.pdf`);
+        }
+    </script>
+</body>
+</html>
